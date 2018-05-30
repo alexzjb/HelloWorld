@@ -1,0 +1,11 @@
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\bin\Debug\netcoreapp2.0\MyConsole.deps.json
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\bin\Debug\netcoreapp2.0\MyConsole.runtimeconfig.json
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\bin\Debug\netcoreapp2.0\MyConsole.runtimeconfig.dev.json
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\bin\Debug\netcoreapp2.0\MyConsole.dll
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\bin\Debug\netcoreapp2.0\MyConsole.pdb
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\obj\Debug\netcoreapp2.0\MyConsole.csprojResolveAssemblyReference.cache
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\obj\Debug\netcoreapp2.0\MyConsole.csproj.CoreCompileInputs.cache
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\obj\Debug\netcoreapp2.0\MyConsole.AssemblyInfoInputs.cache
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\obj\Debug\netcoreapp2.0\MyConsole.AssemblyInfo.cs
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\obj\Debug\netcoreapp2.0\MyConsole.dll
+D:\Alex.Zhang\mysource\MyConsole\MyConsole\obj\Debug\netcoreapp2.0\MyConsole.pdb

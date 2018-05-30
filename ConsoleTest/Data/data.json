@@ -1,0 +1,25 @@
+﻿{
+  "name": "request",
+  "data": [
+    {
+      "id": "kline",
+      "order": 1,
+      "timespan": 1,
+      "url": "",
+      "symblelist": "",
+      "typelist": "",
+      "contractlist": "",
+      "para": [
+        {
+          "pid": "symble"
+        },
+        {
+          "paraid": "type"
+        },
+        {
+          "paraid": "stick"
+        }
+      ]
+    }
+  ]
+}

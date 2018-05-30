@@ -1,0 +1,21 @@
+
+**************** SERVER STARTUP ****************
+2018-05-16 17:12:52,065 [1] INFO  MyLogger - (30)  Start
+
+**************** SERVER STARTUP ****************
+2018-05-16 17:22:14,835 [1] INFO  MyLogger - (30)  Start
+
+**************** SERVER STARTUP ****************
+2018-05-16 17:24:53,963 [1] ERROR MyLogger - (35)  “System.Data.Entity.Internal.AppConfig”的类型初始值设定项引发异常。
+
+**************** SERVER STARTUP ****************
+2018-05-16 17:25:09,574 [1] ERROR MyLogger - (35)  “System.Data.Entity.Internal.AppConfig”的类型初始值设定项引发异常。
+
+**************** SERVER STARTUP ****************
+2018-05-16 17:25:17,351 [1] ERROR MyLogger - (35)  “System.Data.Entity.Internal.AppConfig”的类型初始值设定项引发异常。
+
+**************** SERVER STARTUP ****************
+2018-05-16 17:26:26,243 [1] INFO  MyLogger - (30)  DAL.depth
+
+**************** SERVER STARTUP ****************
+2018-05-16 17:26:48,308 [1] INFO  MyLogger - (30)  Start

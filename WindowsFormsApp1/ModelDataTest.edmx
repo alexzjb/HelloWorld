@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MyTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="depth">
+          <Key>
+            <PropertyRef Name="symbol" />
+            <PropertyRef Name="contract_type" />
+            <PropertyRef Name="ltime" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="symbol" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="contract_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ltime" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="asktype" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="depthvalue1" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="depthvalue2" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="Stime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="kLine">
+          <Key>
+            <PropertyRef Name="symbol" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="contract_type" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="symbol" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="contract_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="start" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="high" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="low" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="end" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="vol" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="num" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="Stime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="socketData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataJson" Type="text" Nullable="false" />
+          <Property Name="stime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contract_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="deal_type" Type="int" Nullable="false" />
+          <Property Name="time_id" Type="bigint" Nullable="false" />
+          <Property Name="stime" Type="datetime" />
+          <Property Name="price" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="vol" Type="numeric" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="ticker">
+          <Key>
+            <PropertyRef Name="symbol" />
+            <PropertyRef Name="contract_type" />
+            <PropertyRef Name="ltime" />
+          </Key>
+          <Property Name="symbol" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="contract_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ltime" Type="bigint" Nullable="false" />
+          <Property Name="last" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="buy" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sell" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="higt" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="low" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="vol" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="contract_id" Type="bigint" Nullable="false" />
+          <Property Name="unit_amount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="Stime" Type="datetime" />
+        </EntityType>
+        <Function Name="fn_GetMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="n" Type="int" Mode="In" />
+          <Parameter Name="type" Type="nvarchar" Mode="In" />
+          <Parameter Name="time" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="fn_GetMA_End" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="n" Type="int" Mode="In" />
+          <Parameter Name="type" Type="nvarchar" Mode="In" />
+          <Parameter Name="time" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spUpdateText" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Str" Type="text" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="MyTestModelStoreContainer">
+          <EntitySet Name="depth" EntityType="Self.depth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kLine" EntityType="Self.kLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="socketData" EntityType="Self.socketData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ticker" EntityType="Self.ticker" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kLine">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="symbol" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="contract_type" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="start" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="high" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="low" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="end" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="vol" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="num" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Stime" Type="DateTime" Precision="3" />
+          <Property Name="symbol" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="contract_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contract_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="deal_type" Type="Int32" Nullable="false" />
+          <Property Name="time_id" Type="Int64" Nullable="false" />
+          <Property Name="stime" Type="DateTime" Precision="3" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="vol" Type="Decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityContainer Name="MyTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kLine" EntityType="Self.kLine" />
+          <EntitySet Name="stock" EntityType="Self.stock" />
+          <FunctionImport Name="spUpdateText">
+            <Parameter Name="Str" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="depth" EntityType="MyTestModel.depth" />
+          <EntitySet Name="ticker" EntityType="MyTestModel.ticker" />
+          <EntitySet Name="socketData" EntityType="MyTestModel.socketData" />
+        </EntityContainer>
+        <EntityType Name="depth">
+          <Key>
+            <PropertyRef Name="symbol" />
+            <PropertyRef Name="contract_type" />
+            <PropertyRef Name="ltime" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="symbol" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="contract_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ltime" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="asktype" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="depthvalue1" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="depthvalue2" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Stime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ticker">
+          <Key>
+            <PropertyRef Name="symbol" />
+            <PropertyRef Name="contract_type" />
+            <PropertyRef Name="ltime" />
+          </Key>
+          <Property Name="symbol" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="contract_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ltime" Type="Int64" Nullable="false" />
+          <Property Name="last" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="buy" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sell" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="higt" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="low" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="vol" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="contract_id" Type="Int64" Nullable="false" />
+          <Property Name="unit_amount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Stime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="socketData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataJson" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyTestModelStoreContainer" CdmEntityContainer="MyTestEntities">
+          <EntitySetMapping Name="kLine">
+            <EntityTypeMapping TypeName="MyTestModel.kLine">
+              <MappingFragment StoreEntitySet="kLine">
+                <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="symbol" ColumnName="symbol" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="end" ColumnName="end" />
+                <ScalarProperty Name="vol" ColumnName="vol" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="Stime" ColumnName="Stime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock">
+            <EntityTypeMapping TypeName="MyTestModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+                <ScalarProperty Name="deal_type" ColumnName="deal_type" />
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+                <ScalarProperty Name="stime" ColumnName="stime" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="vol" ColumnName="vol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spUpdateText" FunctionName="MyTestModel.Store.spUpdateText" />
+          <EntitySetMapping Name="depth">
+            <EntityTypeMapping TypeName="MyTestModel.depth">
+              <MappingFragment StoreEntitySet="depth">
+                <ScalarProperty Name="Stime" ColumnName="Stime" />
+                <ScalarProperty Name="depthvalue2" ColumnName="depthvalue2" />
+                <ScalarProperty Name="depthvalue1" ColumnName="depthvalue1" />
+                <ScalarProperty Name="asktype" ColumnName="asktype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ltime" ColumnName="ltime" />
+                <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+                <ScalarProperty Name="symbol" ColumnName="symbol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ticker">
+            <EntityTypeMapping TypeName="MyTestModel.ticker">
+              <MappingFragment StoreEntitySet="ticker">
+                <ScalarProperty Name="Stime" ColumnName="Stime" />
+                <ScalarProperty Name="unit_amount" ColumnName="unit_amount" />
+                <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+                <ScalarProperty Name="vol" ColumnName="vol" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="higt" ColumnName="higt" />
+                <ScalarProperty Name="sell" ColumnName="sell" />
+                <ScalarProperty Name="buy" ColumnName="buy" />
+                <ScalarProperty Name="last" ColumnName="last" />
+                <ScalarProperty Name="ltime" ColumnName="ltime" />
+                <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+                <ScalarProperty Name="symbol" ColumnName="symbol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="socketData">
+            <EntityTypeMapping TypeName="MyTestModel.socketData">
+              <MappingFragment StoreEntitySet="socketData">
+                <ScalarProperty Name="stime" ColumnName="stime" />
+                <ScalarProperty Name="dataJson" ColumnName="dataJson" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

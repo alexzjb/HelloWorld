@@ -1,0 +1,1360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FrameWorkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="GetCompanyDeptList_Result">
+    <Property Name="deptID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="Split_Result">
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Item" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="Split1_Result">
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Item" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <EntityType Name="AirCustomer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ContainerType2">
+    <Key>
+      <PropertyRef Name="UNID" />
+    </Key>
+    <Property Name="UNID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NameAB" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="TEU" Type="Decimal" Precision="3" Scale="2" />
+    <Property Name="HJSC" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+    <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Demo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Expand1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Expand2" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Expand3" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Expand4" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Expand5" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Expand6" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ExcelImportTpl">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TplCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TplName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReadType" Type="Int32" Nullable="false" />
+    <Property Name="TplJons" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsDelete" Type="Byte" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NewFileName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="CreateOPID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreateOPName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdateOPID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateOPName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="FileURL">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AirSeaURL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileUpLoadURL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lkp_ContainerType">
+    <Key>
+      <PropertyRef Name="ContainerTypeCode" />
+    </Key>
+    <Property Name="ContainerTypeCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContainerType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lkp_PackageType">
+    <Key>
+      <PropertyRef Name="ITEMCODE" />
+    </Key>
+    <Property Name="ITEMCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ITEMNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PARENTCODE" Type="Int32" />
+    <Property Name="SN" Type="Double" />
+    <Property Name="ALIAS1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ALIAS2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRES1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRES2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRES3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FLAG" Type="Int32" />
+    <Property Name="LASTUPDATE" Type="DateTime" Precision="3" />
+    <Property Name="LEAFFLAG" Type="Int32" />
+  </EntityType>
+  <EntityType Name="lkp_Ports">
+    <Key>
+      <PropertyRef Name="PortID" />
+    </Key>
+    <Property Name="PortID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IsPort" Type="Boolean" Nullable="false" />
+    <Property Name="IsPlace" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lkp_StatusPlace">
+    <Key>
+      <PropertyRef Name="StatusPlaceID" />
+    </Key>
+    <Property Name="StatusPlaceID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StatusPlaceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="NoticeSend">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateOPID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateOPName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateOPDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="sys_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="AppName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AppDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ShowOrder" Type="Int32" />
+    <Property Name="PictureURL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="sys_ApplicationURL" Relationship="Self.FK_sys_ApplicationURL_sys_Applications" FromRole="sys_Applications" ToRole="sys_ApplicationURL" />
+    <NavigationProperty Name="sys_Module" Relationship="Self.FK_sys_Module_sys_Applications" FromRole="sys_Applications" ToRole="sys_Module" />
+  </EntityType>
+  <EntityType Name="sys_ApplicationSSO">
+    <Key>
+      <PropertyRef Name="SSOID" />
+    </Key>
+    <Property Name="SSOID" Type="Int32" Nullable="false" />
+    <Property Name="URLType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SSOURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Memo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sys_ApplicationURL">
+    <Key>
+      <PropertyRef Name="AppURLID" />
+    </Key>
+    <Property Name="AppURLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="AppURLName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AppURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="URLType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsPermission" Type="Boolean" Nullable="false" />
+    <Property Name="ServerType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="sys_Applications" Relationship="Self.FK_sys_ApplicationURL_sys_Applications" FromRole="sys_ApplicationURL" ToRole="sys_Applications" />
+  </EntityType>
+  <EntityType Name="sys_Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SaleID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_CustomerTax">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CurrencyNo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="TaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccount" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="AddressTel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sys_CustomPageSize">
+    <Key>
+      <PropertyRef Name="CustomPageSizeID" />
+    </Key>
+    <Property Name="CustomPageSizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="ViewName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PageSize" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_CustomView">
+    <Key>
+      <PropertyRef Name="CustomViewID" />
+    </Key>
+    <Property Name="CustomViewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleViewID" Type="Int32" />
+    <Property Name="FieldID" Type="Int32" Nullable="false" />
+    <Property Name="LinkedID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Caption" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+    <Property Name="Visible" Type="Boolean" Nullable="false" />
+    <Property Name="AllowEditing" Type="Boolean" Nullable="false" />
+    <Property Name="IsOrderField" Type="Boolean" Nullable="false" />
+    <Property Name="OrderType" Type="Int32" Nullable="false" />
+    <Property Name="OrderLevel" Type="Int32" Nullable="false" />
+    <Property Name="RecordType" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="sys_ModuleViewFields" Relationship="Self.FK_sys_RoleView_sys_ModuleViewFields" FromRole="sys_CustomView" ToRole="sys_ModuleViewFields" />
+  </EntityType>
+  <EntityType Name="sys_CustomViewDataFilter">
+    <Key>
+      <PropertyRef Name="CustomViewDataFilterID" />
+    </Key>
+    <Property Name="CustomViewDataFilterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LinkedID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RecordType" Type="Byte" />
+    <Property Name="ModuleViewID" Type="Int32" Nullable="false" />
+    <Property Name="FilterSQL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FilterDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_DefaultConfig">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Profile" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FromApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EmpNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReturnDeptID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReturnDeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReturnOPID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReturnOPName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_DefaultFormValue">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="FormTypeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FormTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="OperatorID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DefaultValueXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sys_DepartArea">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptLogicID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AreaID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OPMgID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPMgrName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeptMgID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeptMgName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AreaMgID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AreaMgName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AcMgID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AcMgName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sys_Department">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptLogicID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsRoot" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DefaultRoot" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="CompanyLevel" Type="Boolean" />
+    <Property Name="EntSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SignNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsIndependent" Type="Boolean" />
+    <Property Name="NCDeptID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DeptGroup" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NCDeptName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+    <Property Name="DeptType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sys_UserDept" Relationship="Self.FK_sys_UserGroup_sys_Group" FromRole="sys_Department" ToRole="sys_UserDept" />
+  </EntityType>
+  <EntityType Name="sys_DeptAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BankAcount" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="CurrencyNo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="CurrencyName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CanVoucherInvoice" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceCompany" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BankWeb" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sys_DeptLink">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="OriginalDeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RootID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShowOrder" Type="Int32" />
+    <Property Name="ChildCount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sys_Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Thread" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Logger" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserInfo" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClientIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="RequestUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlowNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sys_EventSwitch">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+    </Key>
+    <Property Name="EventSwitchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperatorID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="PageCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EventSwitch" Type="Boolean" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sys_FlowNumberInfo">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Profile" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EmpNo" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Initial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NowValue" Type="Int32" Nullable="false" />
+    <Property Name="MinValue" Type="Int32" Nullable="false" />
+    <Property Name="MaxValue" Type="Int32" Nullable="false" />
+    <Property Name="AddValue" Type="Byte" Nullable="false" />
+    <Property Name="LastUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ClearFlag" Type="Boolean" Nullable="false" />
+    <Property Name="DateFormat" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdate" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="sys_Module">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+    </Key>
+    <Property Name="ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" Nullable="false" />
+    <Property Name="PageCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModuleURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ShowOrder" Type="Int32" />
+    <Property Name="IsSystem" Type="Boolean" />
+    <Property Name="IsClosed" Type="Boolean" />
+    <Property Name="IconURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsInherit" Type="Boolean" Nullable="false" />
+    <Property Name="MVCModuleURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MVCModuleIcon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sys_Applications" Relationship="Self.FK_sys_Module_sys_Applications" FromRole="sys_Module" ToRole="sys_Applications" />
+    <NavigationProperty Name="sys_ModuleView" Relationship="Self.FK_sys_ModuleView_sys_Module" FromRole="sys_Module" ToRole="sys_ModuleView" />
+    <NavigationProperty Name="sys_RolePermission" Relationship="Self.FK_sys_RolePermission_sys_RolePermission" FromRole="sys_Module" ToRole="sys_RolePermission" />
+  </EntityType>
+  <EntityType Name="sys_ModuleExtPermission">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+      <PropertyRef Name="BtnNames" />
+      <PropertyRef Name="PermissionValue" />
+    </Key>
+    <Property Name="ExtPermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="PageCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BtnNames" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PermissionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PermissionValue" Type="Int64" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_ModulePrintButton">
+    <Key>
+      <PropertyRef Name="RecordIndex" />
+    </Key>
+    <Property Name="RecordIndex" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExtPermissionID" Type="Int32" Nullable="false" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="PageCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PermissionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BtnNames" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_ModuleView">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+      <PropertyRef Name="ViewName" />
+    </Key>
+    <Property Name="ModuleViewID" Type="Int32" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="PageCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ViewName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ViewSQL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ViewNameCaption" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SortOrder" Type="Int32" />
+    <Property Name="PageSize" Type="Int32" />
+    <Property Name="MaxCount" Type="Int32" />
+    <NavigationProperty Name="sys_Module" Relationship="Self.FK_sys_ModuleView_sys_Module" FromRole="sys_ModuleView" ToRole="sys_Module" />
+  </EntityType>
+  <EntityType Name="sys_ModuleViewFields">
+    <Key>
+      <PropertyRef Name="FieldID" />
+    </Key>
+    <Property Name="FieldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleViewID" Type="Int32" />
+    <Property Name="ApplicationID" Type="Int32" />
+    <Property Name="ViewName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FieldName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FieldDisplayName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+    <Property Name="ControlName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ControlBoundSQL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ControlDisplayMember" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ControlValueMember" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DataType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataFormatString" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ColumnWidth" Type="Int32" Nullable="false" />
+    <Property Name="Visible" Type="Boolean" Nullable="false" />
+    <Property Name="AllowEditing" Type="Boolean" Nullable="false" />
+    <Property Name="IsOrderField" Type="Boolean" Nullable="false" />
+    <Property Name="OrderType" Type="Byte" Nullable="false" />
+    <Property Name="OrderLevel" Type="Int32" Nullable="false" />
+    <Property Name="AllowSetting" Type="Boolean" Nullable="false" />
+    <Property Name="SummaryType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AlignType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="sys_CustomView" Relationship="Self.FK_sys_RoleView_sys_ModuleViewFields" FromRole="sys_ModuleViewFields" ToRole="sys_CustomView" />
+  </EntityType>
+  <EntityType Name="sys_Online">
+    <Key>
+      <PropertyRef Name="SessionID" />
+    </Key>
+    <Property Name="OnlineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SessionID" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_Operator">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+    </Key>
+    <Property Name="OperatorID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OperatorName" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <Property Name="OldOperator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="sys_OperatorChargeLink" Relationship="Self.FK_sys_UserChargeLink_sys_Operator" FromRole="sys_Operator" ToRole="sys_OperatorChargeLink" />
+    <NavigationProperty Name="sys_OperatorChargeLink1" Relationship="Self.FK_sys_UserChargeLink_sys_Operator1" FromRole="sys_Operator" ToRole="sys_OperatorChargeLink" />
+    <NavigationProperty Name="sys_Roles" Relationship="Self.sys_OperatorRoles" FromRole="sys_Operator" ToRole="sys_Roles" />
+    <NavigationProperty Name="sys_Roles1" Relationship="Self.sys_RoleSpecialOperatorAuth" FromRole="sys_Operator" ToRole="sys_Roles" />
+  </EntityType>
+  <EntityType Name="sys_OperatorChargeLink">
+    <Key>
+      <PropertyRef Name="OldOperatorID" />
+      <PropertyRef Name="NewOperatorID" />
+    </Key>
+    <Property Name="OldOperatorID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OldOperatorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NewOperatorID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NewOperatorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ChargeDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="sys_Operator" Relationship="Self.FK_sys_UserChargeLink_sys_Operator" FromRole="sys_OperatorChargeLink" ToRole="sys_Operator" />
+    <NavigationProperty Name="sys_Operator1" Relationship="Self.FK_sys_UserChargeLink_sys_Operator1" FromRole="sys_OperatorChargeLink" ToRole="sys_Operator" />
+  </EntityType>
+  <EntityType Name="sys_RolePermission">
+    <Key>
+      <PropertyRef Name="RolePermissionID" />
+    </Key>
+    <Property Name="RolePermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="PageCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PermissionValue" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="sys_Module" Relationship="Self.FK_sys_RolePermission_sys_RolePermission" FromRole="sys_RolePermission" ToRole="sys_Module" />
+    <NavigationProperty Name="sys_Roles" Relationship="Self.FK_sys_RolePermission_sys_Roles" FromRole="sys_RolePermission" ToRole="sys_Roles" />
+  </EntityType>
+  <EntityType Name="sys_RoleReportConfig">
+    <Key>
+      <PropertyRef Name="RecordIndex" />
+    </Key>
+    <Property Name="RecordIndex" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PrintButtonIndex" Type="Int32" Nullable="false" />
+    <Property Name="ReportCategoryID" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ReportCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReportID" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="DataAuthRange" Type="Byte" Nullable="false" />
+    <Property Name="DataSpecialAuth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="sys_RolePermission" Relationship="Self.FK_sys_RolePermission_sys_Roles" FromRole="sys_Roles" ToRole="sys_RolePermission" />
+    <NavigationProperty Name="sys_Operator" Relationship="Self.sys_OperatorRoles" FromRole="sys_Roles" ToRole="sys_Operator" />
+    <NavigationProperty Name="sys_Operator1" Relationship="Self.sys_RoleSpecialOperatorAuth" FromRole="sys_Roles" ToRole="sys_Operator" />
+  </EntityType>
+  <EntityType Name="sys_SettleDept">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromApplicationID" Type="Int32" />
+    <Property Name="ToApplicationID" Type="Int32" />
+    <Property Name="SendDept" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="SettleDept" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="SettleType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sys_SQLOutputSwitch">
+    <Key>
+      <PropertyRef Name="LoginName" />
+    </Key>
+    <Property Name="LoginName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OutputSwitch" Type="Boolean" Nullable="false" />
+    <Property Name="BeginDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="sys_SystemInfo">
+    <Key>
+      <PropertyRef Name="SystemID" />
+    </Key>
+    <Property Name="SystemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Version" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SystemConfigData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Licensed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sys_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="LoginName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NameCN" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="NameEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="Byte" Nullable="false" />
+    <Property Name="UserStatus" Type="Byte" Nullable="false" />
+    <Property Name="LastLogIP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="LastLogDateTime" Type="DateTime" Precision="3" />
+    <Property Name="Memo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NCUserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sys_UserDept">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="sys_Department" Relationship="Self.FK_sys_UserGroup_sys_Group" FromRole="sys_UserDept" ToRole="sys_Department" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserPayBank">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="PayBank" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PayAcount" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CurrencyNo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="CurrencyName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Sonic_NC_Department">
+    <Key>
+      <PropertyRef Name="indx" />
+    </Key>
+    <Property Name="indx" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PSNCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PSNNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DEPTCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DEPTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sys_ApplicationURL20171205">
+    <Key>
+      <PropertyRef Name="AppURLID" />
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="AppURLName" />
+      <PropertyRef Name="AppURL" />
+      <PropertyRef Name="URLType" />
+      <PropertyRef Name="IsPermission" />
+      <PropertyRef Name="ServerType" />
+    </Key>
+    <Property Name="AppURLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="AppURLName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AppURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="URLType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsPermission" Type="Boolean" Nullable="false" />
+    <Property Name="ServerType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_userdept0210">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TEMP_HR_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NameCN" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="truck_ModuleExtPermission">
+    <Key>
+      <PropertyRef Name="ExtPermissionID" />
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+      <PropertyRef Name="BtnNames" />
+      <PropertyRef Name="PermissionName" />
+      <PropertyRef Name="PermissionValue" />
+      <PropertyRef Name="ShowOrder" />
+    </Key>
+    <Property Name="ExtPermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="PageCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BtnNames" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PermissionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PermissionValue" Type="Int64" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ShowOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="v_GetOperatorCompany">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+      <PropertyRef Name="OperatorName" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="OperatorID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OperatorName" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CustomerID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_OperatorUser_List">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+      <PropertyRef Name="OperatorName" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="OperatorID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OperatorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NameCN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_UserDept_List">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NameCN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DeptID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_sys_ApplicationURL_sys_Applications">
+    <End Role="sys_Applications" Type="Self.sys_Applications" Multiplicity="1" />
+    <End Role="sys_ApplicationURL" Type="Self.sys_ApplicationURL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_ApplicationURL">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_Module_sys_Applications">
+    <End Role="sys_Applications" Type="Self.sys_Applications" Multiplicity="1" />
+    <End Role="sys_Module" Type="Self.sys_Module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_Module">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RoleView_sys_ModuleViewFields">
+    <End Role="sys_ModuleViewFields" Type="Self.sys_ModuleViewFields" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_CustomView" Type="Self.sys_CustomView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_ModuleViewFields">
+        <PropertyRef Name="FieldID" />
+      </Principal>
+      <Dependent Role="sys_CustomView">
+        <PropertyRef Name="FieldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_UserGroup_sys_Group">
+    <End Role="sys_Department" Type="Self.sys_Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_UserDept" Type="Self.sys_UserDept" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Department">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="sys_UserDept">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_ModuleView_sys_Module">
+    <End Role="sys_Module" Type="Self.sys_Module" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_ModuleView" Type="Self.sys_ModuleView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Module">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_ModuleView">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RolePermission_sys_RolePermission">
+    <End Role="sys_Module" Type="Self.sys_Module" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_RolePermission" Type="Self.sys_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Module">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_RolePermission">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_UserChargeLink_sys_Operator">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_OperatorChargeLink" Type="Self.sys_OperatorChargeLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Operator">
+        <PropertyRef Name="OperatorID" />
+      </Principal>
+      <Dependent Role="sys_OperatorChargeLink">
+        <PropertyRef Name="OldOperatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_UserChargeLink_sys_Operator1">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="1" />
+    <End Role="sys_OperatorChargeLink" Type="Self.sys_OperatorChargeLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Operator">
+        <PropertyRef Name="OperatorID" />
+      </Principal>
+      <Dependent Role="sys_OperatorChargeLink">
+        <PropertyRef Name="NewOperatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RolePermission_sys_Roles">
+    <End Role="sys_Roles" Type="Self.sys_Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_RolePermission" Type="Self.sys_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="sys_RolePermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="sys_OperatorRoles">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="*" />
+    <End Role="sys_Roles" Type="Self.sys_Roles" Multiplicity="*" />
+  </Association>
+  <Association Name="sys_RoleSpecialOperatorAuth">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="*" />
+    <End Role="sys_Roles" Type="Self.sys_Roles" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="FrameWorkEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AirCustomer" EntityType="Self.AirCustomer" />
+    <EntitySet Name="ContainerType2" EntityType="Self.ContainerType2" />
+    <EntitySet Name="Demo" EntityType="Self.Demo" />
+    <EntitySet Name="ExcelImportTpl" EntityType="Self.ExcelImportTpl" />
+    <EntitySet Name="FileURL" EntityType="Self.FileURL" />
+    <EntitySet Name="lkp_ContainerType" EntityType="Self.lkp_ContainerType" />
+    <EntitySet Name="lkp_PackageType" EntityType="Self.lkp_PackageType" />
+    <EntitySet Name="lkp_Ports" EntityType="Self.lkp_Ports" />
+    <EntitySet Name="lkp_StatusPlace" EntityType="Self.lkp_StatusPlace" />
+    <EntitySet Name="NoticeSend" EntityType="Self.NoticeSend" />
+    <EntitySet Name="sys_Applications" EntityType="Self.sys_Applications" />
+    <EntitySet Name="sys_ApplicationSSO" EntityType="Self.sys_ApplicationSSO" />
+    <EntitySet Name="sys_ApplicationURL" EntityType="Self.sys_ApplicationURL" />
+    <EntitySet Name="sys_Customer" EntityType="Self.sys_Customer" />
+    <EntitySet Name="sys_CustomerTax" EntityType="Self.sys_CustomerTax" />
+    <EntitySet Name="sys_CustomPageSize" EntityType="Self.sys_CustomPageSize" />
+    <EntitySet Name="sys_CustomView" EntityType="Self.sys_CustomView" />
+    <EntitySet Name="sys_CustomViewDataFilter" EntityType="Self.sys_CustomViewDataFilter" />
+    <EntitySet Name="sys_DefaultConfig" EntityType="Self.sys_DefaultConfig" />
+    <EntitySet Name="sys_DefaultFormValue" EntityType="Self.sys_DefaultFormValue" />
+    <EntitySet Name="sys_DepartArea" EntityType="Self.sys_DepartArea" />
+    <EntitySet Name="sys_Department" EntityType="Self.sys_Department" />
+    <EntitySet Name="sys_DeptAccount" EntityType="Self.sys_DeptAccount" />
+    <EntitySet Name="sys_DeptLink" EntityType="Self.sys_DeptLink" />
+    <EntitySet Name="sys_Event" EntityType="Self.sys_Event" />
+    <EntitySet Name="sys_EventSwitch" EntityType="Self.sys_EventSwitch" />
+    <EntitySet Name="sys_FlowNumberInfo" EntityType="Self.sys_FlowNumberInfo" />
+    <EntitySet Name="sys_Module" EntityType="Self.sys_Module" />
+    <EntitySet Name="sys_ModuleExtPermission" EntityType="Self.sys_ModuleExtPermission" />
+    <EntitySet Name="sys_ModulePrintButton" EntityType="Self.sys_ModulePrintButton" />
+    <EntitySet Name="sys_ModuleView" EntityType="Self.sys_ModuleView" />
+    <EntitySet Name="sys_ModuleViewFields" EntityType="Self.sys_ModuleViewFields" />
+    <EntitySet Name="sys_Online" EntityType="Self.sys_Online" />
+    <EntitySet Name="sys_Operator" EntityType="Self.sys_Operator" />
+    <EntitySet Name="sys_OperatorChargeLink" EntityType="Self.sys_OperatorChargeLink" />
+    <EntitySet Name="sys_RolePermission" EntityType="Self.sys_RolePermission" />
+    <EntitySet Name="sys_RoleReportConfig" EntityType="Self.sys_RoleReportConfig" />
+    <EntitySet Name="sys_Roles" EntityType="Self.sys_Roles" />
+    <EntitySet Name="sys_SettleDept" EntityType="Self.sys_SettleDept" />
+    <EntitySet Name="sys_SQLOutputSwitch" EntityType="Self.sys_SQLOutputSwitch" />
+    <EntitySet Name="sys_SystemInfo" EntityType="Self.sys_SystemInfo" />
+    <EntitySet Name="sys_User" EntityType="Self.sys_User" />
+    <EntitySet Name="sys_UserDept" EntityType="Self.sys_UserDept" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UserPayBank" EntityType="Self.UserPayBank" />
+    <EntitySet Name="Sonic_NC_Department" EntityType="Self.Sonic_NC_Department" />
+    <EntitySet Name="sys_ApplicationURL20171205" EntityType="Self.sys_ApplicationURL20171205" />
+    <EntitySet Name="sys_userdept0210" EntityType="Self.sys_userdept0210" />
+    <EntitySet Name="TEMP_HR_User" EntityType="Self.TEMP_HR_User" />
+    <EntitySet Name="truck_ModuleExtPermission" EntityType="Self.truck_ModuleExtPermission" />
+    <EntitySet Name="v_GetOperatorCompany" EntityType="Self.v_GetOperatorCompany" />
+    <EntitySet Name="V_OperatorUser_List" EntityType="Self.V_OperatorUser_List" />
+    <EntitySet Name="V_UserDept_List" EntityType="Self.V_UserDept_List" />
+    <AssociationSet Name="FK_sys_ApplicationURL_sys_Applications" Association="Self.FK_sys_ApplicationURL_sys_Applications">
+      <End Role="sys_Applications" EntitySet="sys_Applications" />
+      <End Role="sys_ApplicationURL" EntitySet="sys_ApplicationURL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_Module_sys_Applications" Association="Self.FK_sys_Module_sys_Applications">
+      <End Role="sys_Applications" EntitySet="sys_Applications" />
+      <End Role="sys_Module" EntitySet="sys_Module" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RoleView_sys_ModuleViewFields" Association="Self.FK_sys_RoleView_sys_ModuleViewFields">
+      <End Role="sys_ModuleViewFields" EntitySet="sys_ModuleViewFields" />
+      <End Role="sys_CustomView" EntitySet="sys_CustomView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_UserGroup_sys_Group" Association="Self.FK_sys_UserGroup_sys_Group">
+      <End Role="sys_Department" EntitySet="sys_Department" />
+      <End Role="sys_UserDept" EntitySet="sys_UserDept" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_ModuleView_sys_Module" Association="Self.FK_sys_ModuleView_sys_Module">
+      <End Role="sys_Module" EntitySet="sys_Module" />
+      <End Role="sys_ModuleView" EntitySet="sys_ModuleView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RolePermission_sys_RolePermission" Association="Self.FK_sys_RolePermission_sys_RolePermission">
+      <End Role="sys_Module" EntitySet="sys_Module" />
+      <End Role="sys_RolePermission" EntitySet="sys_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_UserChargeLink_sys_Operator" Association="Self.FK_sys_UserChargeLink_sys_Operator">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_OperatorChargeLink" EntitySet="sys_OperatorChargeLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_UserChargeLink_sys_Operator1" Association="Self.FK_sys_UserChargeLink_sys_Operator1">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_OperatorChargeLink" EntitySet="sys_OperatorChargeLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RolePermission_sys_Roles" Association="Self.FK_sys_RolePermission_sys_Roles">
+      <End Role="sys_Roles" EntitySet="sys_Roles" />
+      <End Role="sys_RolePermission" EntitySet="sys_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="sys_OperatorRoles" Association="Self.sys_OperatorRoles">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_Roles" EntitySet="sys_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="sys_RoleSpecialOperatorAuth" Association="Self.sys_RoleSpecialOperatorAuth">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_Roles" EntitySet="sys_Roles" />
+    </AssociationSet>
+    <FunctionImport Name="GetCompanyDeptList" IsComposable="true" ReturnType="Collection(FrameWorkModel.GetCompanyDeptList_Result)">
+      <Parameter Name="QueryDeptID" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Split" IsComposable="true" ReturnType="Collection(FrameWorkModel.Split_Result)">
+      <Parameter Name="string" Mode="In" Type="String" />
+      <Parameter Name="separator" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Split1" IsComposable="true" ReturnType="Collection(FrameWorkModel.Split1_Result)">
+      <Parameter Name="string" Mode="In" Type="String" />
+      <Parameter Name="separator" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CheckOutputSwitch" ReturnType="Collection(Int32)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateModuleViewFields">
+      <Parameter Name="ModuleViewID" Mode="In" Type="Int32" />
+      <Parameter Name="TableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDefaultAccountByUserID" ReturnType="Collection(FrameWorkModel.GetDefaultAccountByUserID_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="Value" Mode="In" Type="String" />
+      <Parameter Name="Currency" Mode="In" Type="String" />
+      <Parameter Name="Count" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetDeptUser" ReturnType="Collection(FrameWorkModel.GetDeptUser_Result)">
+      <Parameter Name="DeptID" Mode="In" Type="String" />
+      <Parameter Name="RootID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFlowNo">
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+      <Parameter Name="Profile" Mode="In" Type="String" />
+      <Parameter Name="EmpNo" Mode="In" Type="String" />
+      <Parameter Name="other" Mode="In" Type="String" />
+      <Parameter Name="GeneratNO" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFlowNo0420">
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+      <Parameter Name="Profile" Mode="In" Type="String" />
+      <Parameter Name="EmpNo" Mode="In" Type="String" />
+      <Parameter Name="other" Mode="In" Type="String" />
+      <Parameter Name="GeneratNO" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFlowNo1231">
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+      <Parameter Name="Profile" Mode="In" Type="String" />
+      <Parameter Name="EmpNo" Mode="In" Type="String" />
+      <Parameter Name="other" Mode="In" Type="String" />
+      <Parameter Name="GeneratNO" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFlowNos" ReturnType="Collection(FrameWorkModel.GetFlowNos_Result)">
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+      <Parameter Name="Profile" Mode="In" Type="String" />
+      <Parameter Name="EmpNo" Mode="In" Type="String" />
+      <Parameter Name="other" Mode="In" Type="String" />
+      <Parameter Name="addNum" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetOperatorSearch" ReturnType="Collection(FrameWorkModel.GetOperatorSearch_Result)">
+      <Parameter Name="Operator" Mode="In" Type="String" />
+      <Parameter Name="iCount" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPageCount" ReturnType="Collection(FrameWorkModel.GetPageCount_Result)">
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getPageSize" ReturnType="Collection(FrameWorkModel.getPageSize_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSystemDefaultDeptAndOP" ReturnType="Collection(FrameWorkModel.GetSystemDefaultDeptAndOP_Result)">
+      <Parameter Name="Profile" Mode="In" Type="String" />
+      <Parameter Name="EmpNo" Mode="In" Type="String" />
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetTaxNo" ReturnType="Collection(FrameWorkModel.GetTaxNo_Result)">
+      <Parameter Name="input" Mode="In" Type="String" />
+      <Parameter Name="RootID" Mode="In" Type="String" />
+      <Parameter Name="OPID" Mode="In" Type="String" />
+      <Parameter Name="APPID" Mode="In" Type="Int32" />
+      <Parameter Name="TopCount" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserOperator" ReturnType="Collection(FrameWorkModel.GetUserOperator_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetXMLSendAndReciveOP" ReturnType="Collection(FrameWorkModel.GetXMLSendAndReciveOP_Result)">
+      <Parameter Name="operatorID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="JournalNO">
+      <Parameter Name="JournalID" Mode="In" Type="String" />
+      <Parameter Name="GeneratNO" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_UserView">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+      <Parameter Name="applicationid" Mode="In" Type="Int32" />
+      <Parameter Name="pagecode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procCustomView" ReturnType="Collection(FrameWorkModel.procCustomView_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+      <Parameter Name="PageCode" Mode="In" Type="String" />
+      <Parameter Name="ViewName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procCustomView2" ReturnType="Collection(FrameWorkModel.procCustomView2_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+      <Parameter Name="PageCode" Mode="In" Type="String" />
+      <Parameter Name="ViewName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procCustomViewByUser" ReturnType="Collection(FrameWorkModel.procCustomViewByUser_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ReceiveCustomsDeclareCheck">
+      <Parameter Name="ReferenceNo" Mode="In" Type="String" />
+      <Parameter Name="XMLMD5" Mode="In" Type="String" />
+      <Parameter Name="OPID" Mode="In" Type="String" />
+      <Parameter Name="OPName" Mode="In" Type="String" />
+      <Parameter Name="iflag" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SavePageSize">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="ApplicationID" Mode="In" Type="Int32" />
+      <Parameter Name="ViewName" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="SP_API_GetOpListByParentId">
+      <Parameter Name="OPID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetUserReport" ReturnType="Collection(FrameWorkModel.sp_GetUserReport_Result)">
+      <Parameter Name="OperatorID" Mode="In" Type="String" />
+      <Parameter Name="ApplicationId" Mode="In" Type="Int32" />
+      <Parameter Name="PageCode" Mode="In" Type="String" />
+      <Parameter Name="BtnNames" Mode="In" Type="String" />
+      <Parameter Name="IsSysManager" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FrameWorkModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FrameWorkModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_TableInfo" ReturnType="Collection(FrameWorkModel.SP_TableInfo_Result)">
+      <Parameter Name="value" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UpdateEntrustInfo">
+      <Parameter Name="EntrustNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="TotalGrossWeight" Mode="In" Type="Decimal" />
+      <Parameter Name="ChargeableWeight" Mode="In" Type="Decimal" />
+      <Parameter Name="TotalQty" Mode="In" Type="Int32" />
+      <Parameter Name="TotalVolume" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="SupesoftPage">
+      <Parameter Name="TableName" Mode="In" Type="String" />
+      <Parameter Name="ReturnFields" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="Where" Mode="In" Type="String" />
+      <Parameter Name="Orderfld" Mode="In" Type="String" />
+      <Parameter Name="OrderType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="TableInfo" ReturnType="Collection(FrameWorkModel.TableInfo_Result)">
+      <Parameter Name="TableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateOperator" />
+  </EntityContainer>
+  <ComplexType Name="GetDefaultAccountByUserID_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="DeptID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="DeptName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BankName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="BankAcount" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CurrencyNo" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="CurrencyName" Nullable="true" MaxLength="20" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+    <Property Type="String" Name="ShortName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="TaxRate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="CanVoucherInvoice" Nullable="false" />
+    <Property Type="String" Name="InvoiceCompany" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="BankWeb" Nullable="true" MaxLength="1024" />
+  </ComplexType>
+  <ComplexType Name="GetDeptUser_Result">
+    <Property Type="String" Name="UserID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="LoginName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="32" />
+    <Property Type="String" Name="NameCN" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="NameEN" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Tel" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
+    <Property Type="Byte" Name="UserType" Nullable="false" />
+    <Property Type="Byte" Name="UserStatus" Nullable="false" />
+    <Property Type="String" Name="LastLogIP" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="LastLogDateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Memo" Nullable="false" MaxLength="1000" />
+    <Property Type="String" Name="NCUserID" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="OperatorList" Nullable="true" />
+    <Property Type="String" Name="RoleList" Nullable="true" />
+    <Property Type="String" Name="DeptList" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetFlowNos_Result">
+    <Property Type="String" Name="Initial" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="Num" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="NowValue" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetOperatorSearch_Result">
+    <Property Type="String" Name="OperatorID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="DeptID" Nullable="false" MaxLength="89" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="OperatorDeptID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="OperatorDeptName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LoginName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IsEnabled" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="IsDeleted" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="GetPageCount_Result">
+    <Property Type="Int32" Name="ModuleViewID" Nullable="true" />
+    <Property Type="Int32" Name="ApplicationID" Nullable="false" />
+    <Property Type="String" Name="PageCode" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="ViewName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="MaxCount" Nullable="false" />
+    <Property Type="Int32" Name="PageSize" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getPageSize_Result">
+    <Property Type="String" Name="ViewName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="PageSize" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetSystemDefaultDeptAndOP_Result">
+    <Property Type="String" Name="ReturnDeptID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ReturnDeptName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReturnOPID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ReturnOPName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="GetTaxNo_Result">
+    <Property Type="String" Name="DeptID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="DeptName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TaxNo" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="rows" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserOperator_Result">
+    <Property Type="String" Name="OperatorID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="OperatorName" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="UserID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="DeptID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="GroupName" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="IsEnabled" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+    <Property Type="String" Name="OldOperator" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="RoleList" Nullable="true" />
+    <Property Type="String" Name="FuncList" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetXMLSendAndReciveOP_Result">
+    <Property Type="String" Name="operatorid" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="operatorName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="procCustomView_Result">
+    <Property Type="Int32" Name="FieldID" Nullable="true" />
+    <Property Type="String" Name="FieldName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="FieldDisplayName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="ShowOrder" Nullable="true" />
+    <Property Type="String" Name="ControlName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ControlBoundSQL" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ControlDisplayMember" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ControlValueMember" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="DataType" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DataFormatString" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="ColumnWidth" Nullable="true" />
+    <Property Type="Boolean" Name="Visible" Nullable="true" />
+    <Property Type="Boolean" Name="AllowEditing" Nullable="true" />
+    <Property Type="Boolean" Name="IsOrderField" Nullable="true" />
+    <Property Type="Int32" Name="OrderType" Nullable="true" />
+    <Property Type="Int32" Name="OrderLevel" Nullable="true" />
+    <Property Type="Boolean" Name="AllowSetting" Nullable="false" />
+    <Property Type="String" Name="SummaryType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="AlignType" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="procCustomView2_Result">
+    <Property Type="Int32" Name="FieldID" Nullable="true" />
+    <Property Type="String" Name="FieldName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="FieldDisplayName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="ShowOrder" Nullable="true" />
+    <Property Type="String" Name="ControlName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ControlBoundSQL" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ControlDisplayMember" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ControlValueMember" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="DataType" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DataFormatString" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="ColumnWidth" Nullable="true" />
+    <Property Type="Boolean" Name="Visible" Nullable="true" />
+    <Property Type="Boolean" Name="AllowEditing" Nullable="true" />
+    <Property Type="Boolean" Name="IsOrderField" Nullable="true" />
+    <Property Type="Int32" Name="OrderType" Nullable="true" />
+    <Property Type="Int32" Name="OrderLevel" Nullable="true" />
+    <Property Type="Boolean" Name="AllowSetting" Nullable="false" />
+    <Property Type="String" Name="SummaryType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="AlignType" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="procCustomViewByUser_Result">
+    <Property Type="Int32" Name="FieldID" Nullable="true" />
+    <Property Type="String" Name="FieldName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="FieldDisplayName" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="ShowOrder" Nullable="true" />
+    <Property Type="String" Name="ControlName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ControlBoundSQL" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ControlDisplayMember" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ControlValueMember" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="DataType" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="DataFormatString" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="ColumnWidth" Nullable="true" />
+    <Property Type="Boolean" Name="Visible" Nullable="true" />
+    <Property Type="Boolean" Name="AllowEditing" Nullable="true" />
+    <Property Type="Boolean" Name="IsOrderField" Nullable="true" />
+    <Property Type="Int32" Name="OrderType" Nullable="true" />
+    <Property Type="Int32" Name="OrderLevel" Nullable="true" />
+    <Property Type="Boolean" Name="AllowSetting" Nullable="false" />
+    <Property Type="String" Name="SummaryType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="AlignType" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ViewName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_GetUserReport_Result">
+    <Property Type="Guid" Name="ReportID" Nullable="false" />
+    <Property Type="String" Name="Report" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ReportName" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_TableInfo_Result">
+    <Property Type="String" Name="表名" Nullable="false" MaxLength="128" />
+    <Property Type="Int16" Name="字段序号" Nullable="true" />
+    <Property Type="String" Name="字段名" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="标识" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="主键" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="类型" Nullable="true" MaxLength="128" />
+    <Property Type="Int16" Name="占用字节数" Nullable="false" />
+    <Property Type="Int32" Name="长度" Nullable="true" />
+    <Property Type="Int32" Name="小数位数" Nullable="false" />
+    <Property Type="String" Name="允许空" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="默认值" Nullable="false" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="TableInfo_Result">
+    <Property Type="String" Name="表名" Nullable="false" MaxLength="128" />
+    <Property Type="Int16" Name="字段序号" Nullable="true" />
+    <Property Type="String" Name="字段名" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="标识" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="主键" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="类型" Nullable="true" MaxLength="128" />
+    <Property Type="Int16" Name="占用字节数" Nullable="false" />
+    <Property Type="Int32" Name="长度" Nullable="true" />
+    <Property Type="Int32" Name="小数位数" Nullable="false" />
+    <Property Type="String" Name="允许空" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="默认值" Nullable="false" MaxLength="4000" />
+  </ComplexType>
+</Schema>

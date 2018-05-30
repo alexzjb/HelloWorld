@@ -1,0 +1,1443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FrameWorkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AirCustomer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ContainerType2">
+    <Key>
+      <PropertyRef Name="UNID" />
+    </Key>
+    <Property Name="UNID" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="NameAB" Type="varchar" MaxLength="12" />
+    <Property Name="TEU" Type="decimal" Precision="3" Scale="2" />
+    <Property Name="HJSC" Type="varchar" MaxLength="2" />
+    <Property Name="Description" Type="varchar" MaxLength="36" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Demo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Expand1" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Expand2" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Expand3" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Expand4" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Expand5" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Expand6" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ExcelImportTpl">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TplCode" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="TplName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ReadType" Type="int" Nullable="false" />
+    <Property Name="TplJons" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsDelete" Type="tinyint" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NewFileName" Type="nvarchar" MaxLength="80" />
+    <Property Name="CreateOPID" Type="varchar" MaxLength="20" />
+    <Property Name="CreateOPName" Type="nvarchar" MaxLength="20" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateOPID" Type="varchar" MaxLength="20" />
+    <Property Name="UpdateOPName" Type="nvarchar" MaxLength="20" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileURL">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AirSeaURL" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FileUpLoadURL" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lkp_ContainerType">
+    <Key>
+      <PropertyRef Name="ContainerTypeCode" />
+    </Key>
+    <Property Name="ContainerTypeCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="ContainerType" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lkp_PackageType">
+    <Key>
+      <PropertyRef Name="ITEMCODE" />
+    </Key>
+    <Property Name="ITEMCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ITEMNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="PARENTCODE" Type="int" />
+    <Property Name="SN" Type="float" />
+    <Property Name="ALIAS1" Type="nvarchar" MaxLength="50" />
+    <Property Name="ALIAS2" Type="nvarchar" MaxLength="50" />
+    <Property Name="PRES1" Type="nvarchar" MaxLength="50" />
+    <Property Name="PRES2" Type="nvarchar" MaxLength="50" />
+    <Property Name="PRES3" Type="nvarchar" MaxLength="50" />
+    <Property Name="FLAG" Type="int" />
+    <Property Name="LASTUPDATE" Type="datetime" />
+    <Property Name="LEAFFLAG" Type="int" />
+  </EntityType>
+  <EntityType Name="lkp_Ports">
+    <Key>
+      <PropertyRef Name="PortID" />
+    </Key>
+    <Property Name="PortID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="StateCode" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="255" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="2" />
+    <Property Name="Country" Type="varchar" MaxLength="255" />
+    <Property Name="IsPort" Type="bit" Nullable="false" />
+    <Property Name="IsPlace" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lkp_StatusPlace">
+    <Key>
+      <PropertyRef Name="StatusPlaceID" />
+    </Key>
+    <Property Name="StatusPlaceID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="StatusPlaceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“FrameWork.dbo.NCCustomer”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="NCCustomer">
+          <Property Name="ObjectNo" Type="nvarchar" MaxLength="255" />
+          <Property Name="ObjectNameC" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“FrameWork.dbo.NCDept”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="NCDept">
+          <Property Name="CompanyID" Type="nvarchar" MaxLength="255" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DeptID" Type="nvarchar" MaxLength="255" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <EntityType Name="NoticeSend">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateOPID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreateOPName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreateOPDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“FrameWork.dbo.Sonic_dept_temp”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="Sonic_dept_temp">
+          <Property Name="dex" Type="nchar" MaxLength="10" />
+          <Property Name="deptid" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.Sonic_NC_Department”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Sonic_NC_Department">
+    <Key>
+      <PropertyRef Name="indx" />
+    </Key>
+    <Property Name="indx" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PSNCODE" Type="nvarchar" MaxLength="50" />
+    <Property Name="PSNNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="DEPTCODE" Type="varchar" MaxLength="50" />
+    <Property Name="DEPTNAME" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“FrameWork.dbo.Sonic_OrderLockRule”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="Sonic_OrderLockRule">
+          <Property Name="OrderTypeID" Type="char" MaxLength="8" />
+          <Property Name="OrderTypeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="LockDay" Type="int" />
+          <Property Name="OPType" Type="nvarchar" MaxLength="10" />
+          <Property Name="CompanyID" Type="nvarchar" MaxLength="20" />
+          <Property Name="SmallOrderTypeID" Type="char" MaxLength="8" />
+          <Property Name="SamllOrderTypeName" Type="nvarchar" MaxLength="20" />
+        </EntityType>-->
+  <EntityType Name="sys_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="AppName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AppDescription" Type="nvarchar" MaxLength="200" />
+    <Property Name="ShowOrder" Type="int" />
+    <Property Name="PictureURL" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsShow" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_ApplicationSSO">
+    <Key>
+      <PropertyRef Name="SSOID" />
+    </Key>
+    <Property Name="SSOID" Type="int" Nullable="false" />
+    <Property Name="URLType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="SSOURL" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Memo" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="sys_ApplicationURL">
+    <Key>
+      <PropertyRef Name="AppURLID" />
+    </Key>
+    <Property Name="AppURLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="AppURLName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AppURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="URLType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsPermission" Type="bit" Nullable="false" />
+    <Property Name="ServerType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.sys_ApplicationURL20171205”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="sys_ApplicationURL20171205">
+    <Key>
+      <PropertyRef Name="AppURLID" />
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="AppURLName" />
+      <PropertyRef Name="AppURL" />
+      <PropertyRef Name="URLType" />
+      <PropertyRef Name="IsPermission" />
+      <PropertyRef Name="ServerType" />
+    </Key>
+    <Property Name="AppURLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="AppURLName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AppURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="URLType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsPermission" Type="bit" Nullable="false" />
+    <Property Name="ServerType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Tel" Type="varchar" MaxLength="20" />
+    <Property Name="SaleID" Type="nchar" MaxLength="20" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_CustomerTax">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="nvarchar" MaxLength="40" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="255" />
+    <Property Name="CurrencyNo" Type="char" MaxLength="3" />
+    <Property Name="TaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="100" />
+    <Property Name="BankAccount" Type="char" MaxLength="30" />
+    <Property Name="AddressTel" Type="nvarchar" MaxLength="200" />
+    <Property Name="Type" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sys_CustomPageSize">
+    <Key>
+      <PropertyRef Name="CustomPageSizeID" />
+    </Key>
+    <Property Name="CustomPageSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="ViewName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="PageSize" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_CustomView">
+    <Key>
+      <PropertyRef Name="CustomViewID" />
+    </Key>
+    <Property Name="CustomViewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleViewID" Type="int" />
+    <Property Name="FieldID" Type="int" Nullable="false" />
+    <Property Name="LinkedID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Caption" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+    <Property Name="Visible" Type="bit" Nullable="false" />
+    <Property Name="AllowEditing" Type="bit" Nullable="false" />
+    <Property Name="IsOrderField" Type="bit" Nullable="false" />
+    <Property Name="OrderType" Type="int" Nullable="false" />
+    <Property Name="OrderLevel" Type="int" Nullable="false" />
+    <Property Name="RecordType" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_CustomViewDataFilter">
+    <Key>
+      <PropertyRef Name="CustomViewDataFilterID" />
+    </Key>
+    <Property Name="CustomViewDataFilterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkedID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RecordType" Type="tinyint" />
+    <Property Name="ModuleViewID" Type="int" Nullable="false" />
+    <Property Name="FilterSQL" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="FilterDesc" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_DefaultConfig">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Profile" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="FromApplicationID" Type="int" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="ReturnDeptID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ReturnDeptName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReturnOPID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ReturnOPName" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_DefaultFormValue">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="FormTypeID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FormTypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="OperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DefaultValueXML" Type="xml" />
+    <Property Name="Description" Type="nvarchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="sys_DepartArea">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptLogicID" Type="varchar" MaxLength="50" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AreaID" Type="nvarchar" MaxLength="20" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="OPMgID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="OPMgrName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptMgID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptMgName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AreaMgID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AreaMgName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AcMgID" Type="nvarchar" MaxLength="20" />
+    <Property Name="AcMgName" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sys_Department">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptLogicID" Type="varchar" MaxLength="50" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsRoot" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DefaultRoot" Type="nchar" MaxLength="20" />
+    <Property Name="CompanyLevel" Type="bit" />
+    <Property Name="EntSignature" Type="nvarchar" MaxLength="50" />
+    <Property Name="SignNo" Type="varchar" MaxLength="50" />
+    <Property Name="TaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="IsIndependent" Type="bit" />
+    <Property Name="NCDeptID" Type="nvarchar" MaxLength="20" />
+    <Property Name="DeptGroup" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NCDeptName" Type="nvarchar" MaxLength="20" />
+    <Property Name="CustomerID" Type="varchar" MaxLength="12" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="160" />
+    <Property Name="DeptType" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sys_DeptAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="100" />
+    <Property Name="BankAcount" Type="char" MaxLength="30" />
+    <Property Name="CurrencyNo" Type="char" MaxLength="3" />
+    <Property Name="CurrencyName" Type="varchar" MaxLength="20" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaxRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CanVoucherInvoice" Type="int" Nullable="false" />
+    <Property Name="InvoiceCompany" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BankWeb" Type="varchar" MaxLength="1024" />
+  </EntityType>
+  <EntityType Name="sys_DeptLink">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="OriginalDeptID" Type="nchar" MaxLength="20" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParentID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="RootID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Path" Type="varchar(max)" Nullable="false" />
+    <Property Name="ShowOrder" Type="int" />
+    <Property Name="ChildCount" Type="int" />
+  </EntityType>
+  <EntityType Name="sys_Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Exception" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserInfo" Type="nvarchar" MaxLength="90" Nullable="false" />
+    <Property Name="ClientIP" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="RequestUrl" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LogType" Type="nvarchar" MaxLength="50" />
+    <Property Name="FlowNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sys_EventSwitch">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+    </Key>
+    <Property Name="EventSwitchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperatorID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="PageCode" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="EventSwitch" Type="bit" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sys_FlowNumberInfo">
+    <Key>
+      <PropertyRef Name="Indx" />
+    </Key>
+    <Property Name="Indx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Profile" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="Initial" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="NowValue" Type="int" Nullable="false" />
+    <Property Name="MinValue" Type="int" Nullable="false" />
+    <Property Name="MaxValue" Type="int" Nullable="false" />
+    <Property Name="AddValue" Type="tinyint" Nullable="false" />
+    <Property Name="LastUpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="ClearFlag" Type="bit" Nullable="false" />
+    <Property Name="DateFormat" Type="char" MaxLength="8" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="LastUpdate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_Module">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+    </Key>
+    <Property Name="ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" Nullable="false" />
+    <Property Name="PageCode" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="ModuleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModuleURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="ShowOrder" Type="int" />
+    <Property Name="IsSystem" Type="bit" />
+    <Property Name="IsClosed" Type="bit" />
+    <Property Name="IconURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsInherit" Type="bit" Nullable="false" />
+    <Property Name="MVCModuleURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="MVCModuleIcon" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="sys_ModuleExtPermission">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+      <PropertyRef Name="BtnNames" />
+      <PropertyRef Name="PermissionValue" />
+    </Key>
+    <Property Name="ExtPermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="PageCode" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="BtnNames" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PermissionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PermissionValue" Type="bigint" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_ModulePrintButton">
+    <Key>
+      <PropertyRef Name="RecordIndex" />
+    </Key>
+    <Property Name="RecordIndex" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExtPermissionID" Type="int" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="PageCode" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="PermissionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="BtnNames" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_ModuleView">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+      <PropertyRef Name="ViewName" />
+    </Key>
+    <Property Name="ModuleViewID" Type="int" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="PageCode" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="ViewName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ViewSQL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ViewNameCaption" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SortOrder" Type="int" />
+    <Property Name="PageSize" Type="int" />
+    <Property Name="MaxCount" Type="int" />
+  </EntityType>
+  <EntityType Name="sys_ModuleViewFields">
+    <Key>
+      <PropertyRef Name="FieldID" />
+    </Key>
+    <Property Name="FieldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleViewID" Type="int" />
+    <Property Name="ApplicationID" Type="int" />
+    <Property Name="ViewName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FieldName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="FieldDisplayName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+    <Property Name="ControlName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ControlBoundSQL" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ControlDisplayMember" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ControlValueMember" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DataFormatString" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ColumnWidth" Type="int" Nullable="false" />
+    <Property Name="Visible" Type="bit" Nullable="false" />
+    <Property Name="AllowEditing" Type="bit" Nullable="false" />
+    <Property Name="IsOrderField" Type="bit" Nullable="false" />
+    <Property Name="OrderType" Type="tinyint" Nullable="false" />
+    <Property Name="OrderLevel" Type="int" Nullable="false" />
+    <Property Name="AllowSetting" Type="bit" Nullable="false" />
+    <Property Name="SummaryType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AlignType" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_Online">
+    <Key>
+      <PropertyRef Name="SessionID" />
+    </Key>
+    <Property Name="OnlineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SessionID" Type="varchar" MaxLength="24" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Ip" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="LoginTime" Type="datetime" Nullable="false" />
+    <Property Name="LastTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUrl" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_Operator">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+    </Key>
+    <Property Name="OperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="OperatorName" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="OldOperator" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sys_OperatorChargeLink">
+    <Key>
+      <PropertyRef Name="OldOperatorID" />
+      <PropertyRef Name="NewOperatorID" />
+    </Key>
+    <Property Name="OldOperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="OldOperatorName" Type="nvarchar" MaxLength="20" />
+    <Property Name="NewOperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NewOperatorName" Type="nvarchar" MaxLength="20" />
+    <Property Name="ChargeDate" Type="datetime" Nullable="false" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_OperatorRoles">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="OperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="RoleID" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_RolePermission">
+    <Key>
+      <PropertyRef Name="RolePermissionID" />
+    </Key>
+    <Property Name="RolePermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="PageCode" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="PermissionValue" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_RoleReportConfig">
+    <Key>
+      <PropertyRef Name="RecordIndex" />
+    </Key>
+    <Property Name="RecordIndex" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="PrintButtonIndex" Type="int" Nullable="false" />
+    <Property Name="ReportCategoryID" Type="char" MaxLength="36" Nullable="false" />
+    <Property Name="ReportCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReportID" Type="char" MaxLength="36" Nullable="false" />
+    <Property Name="ReportName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="DataAuthRange" Type="tinyint" Nullable="false" />
+    <Property Name="DataSpecialAuth" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_RoleSpecialOperatorAuth">
+    <Key>
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="OperatorID" />
+    </Key>
+    <Property Name="RoleID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="OperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_SettleDept">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromApplicationID" Type="int" />
+    <Property Name="ToApplicationID" Type="int" />
+    <Property Name="SendDept" Type="nchar" MaxLength="20" />
+    <Property Name="SettleDept" Type="nchar" MaxLength="20" />
+    <Property Name="SettleType" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="sys_SQLOutputSwitch">
+    <Key>
+      <PropertyRef Name="LoginName" />
+    </Key>
+    <Property Name="LoginName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="OutputSwitch" Type="bit" Nullable="false" />
+    <Property Name="BeginDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sys_SystemInfo">
+    <Key>
+      <PropertyRef Name="SystemID" />
+    </Key>
+    <Property Name="SystemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Version" Type="nvarchar" MaxLength="50" />
+    <Property Name="SystemConfigData" Type="image" />
+    <Property Name="Licensed" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sys_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="LoginName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="NameCN" Type="nvarchar" MaxLength="6" />
+    <Property Name="NameEN" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Tel" Type="varchar" MaxLength="20" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="UserType" Type="tinyint" Nullable="false" />
+    <Property Name="UserStatus" Type="tinyint" Nullable="false" />
+    <Property Name="LastLogIP" Type="varchar" MaxLength="15" />
+    <Property Name="LastLogDateTime" Type="datetime" />
+    <Property Name="Memo" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="NCUserID" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sys_UserDept">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.sys_userdept0210”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="sys_userdept0210">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.TEMP_HR_User”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="TEMP_HR_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="NameCN" Type="nvarchar" MaxLength="6" />
+    <Property Name="Position" Type="varchar" MaxLength="100" />
+    <Property Name="Company" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.truck_ModuleExtPermission”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="truck_ModuleExtPermission">
+    <Key>
+      <PropertyRef Name="ExtPermissionID" />
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="PageCode" />
+      <PropertyRef Name="BtnNames" />
+      <PropertyRef Name="PermissionName" />
+      <PropertyRef Name="PermissionValue" />
+      <PropertyRef Name="ShowOrder" />
+    </Key>
+    <Property Name="ExtPermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="PageCode" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="BtnNames" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PermissionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PermissionValue" Type="bigint" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="ShowOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPayBank">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nchar" MaxLength="20" />
+    <Property Name="PayBank" Type="nvarchar" MaxLength="100" />
+    <Property Name="PayAcount" Type="char" MaxLength="20" />
+    <Property Name="CurrencyNo" Type="char" MaxLength="3" />
+    <Property Name="CurrencyName" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.v_GetOperatorCompany”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="v_GetOperatorCompany">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+      <PropertyRef Name="OperatorName" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="OperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="OperatorName" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="CustomerID" Type="nvarchar" MaxLength="20" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="160" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.V_OperatorUser_List”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="V_OperatorUser_List">
+    <Key>
+      <PropertyRef Name="OperatorID" />
+      <PropertyRef Name="OperatorName" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="OperatorID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="OperatorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="NameCN" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“FrameWork.dbo.V_SPDepart”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="V_SPDepart">
+          <Property Name="审批部门" Type="nvarchar" MaxLength="20" />
+          <Property Name="审批部门名称" Type="nvarchar" MaxLength="50" />
+          <Property Name="公司代码" Type="varchar" MaxLength="50" />
+          <Property Name="公司名称" Type="nvarchar" MaxLength="50" />
+          <Property Name="大区名称" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“FrameWork.dbo.V_UserDept_List”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="V_UserDept_List">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="UserID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="NameCN" Type="nvarchar" MaxLength="20" />
+    <Property Name="DeptID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_sys_ApplicationURL_sys_Applications">
+    <End Role="sys_Applications" Type="Self.sys_Applications" Multiplicity="1" />
+    <End Role="sys_ApplicationURL" Type="Self.sys_ApplicationURL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_ApplicationURL">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_Module_sys_Applications">
+    <End Role="sys_Applications" Type="Self.sys_Applications" Multiplicity="1" />
+    <End Role="sys_Module" Type="Self.sys_Module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_Module">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--生成过程中发现错误:
+警告 6035: 关系“FK_sys_ModulePrintButton_sys_ModuleExtPermission”在关系主端上有一些列不属于表的键的一部分。已排除了此关系。
+        <Association Name="FK_sys_ModulePrintButton_sys_ModuleExtPermission" />-->
+  <Association Name="FK_sys_ModuleView_sys_Module">
+    <End Role="sys_Module" Type="Self.sys_Module" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_ModuleView" Type="Self.sys_ModuleView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Module">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_ModuleView">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_OperatorRoles_sys_Operator">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_OperatorRoles" Type="Self.sys_OperatorRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Operator">
+        <PropertyRef Name="OperatorID" />
+      </Principal>
+      <Dependent Role="sys_OperatorRoles">
+        <PropertyRef Name="OperatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RolePermission_sys_RolePermission">
+    <End Role="sys_Module" Type="Self.sys_Module" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_RolePermission" Type="Self.sys_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Module">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="sys_RolePermission">
+        <PropertyRef Name="PageCode" />
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RolePermission_sys_Roles">
+    <End Role="sys_Roles" Type="Self.sys_Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_RolePermission" Type="Self.sys_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="sys_RolePermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RoleSpecialOperatorAuth_sys_Operator">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_RoleSpecialOperatorAuth" Type="Self.sys_RoleSpecialOperatorAuth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Operator">
+        <PropertyRef Name="OperatorID" />
+      </Principal>
+      <Dependent Role="sys_RoleSpecialOperatorAuth">
+        <PropertyRef Name="OperatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RoleSpecialUser_sys_Roles">
+    <End Role="sys_Roles" Type="Self.sys_Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_RoleSpecialOperatorAuth" Type="Self.sys_RoleSpecialOperatorAuth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="sys_RoleSpecialOperatorAuth">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_RoleView_sys_ModuleViewFields">
+    <End Role="sys_ModuleViewFields" Type="Self.sys_ModuleViewFields" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_CustomView" Type="Self.sys_CustomView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_ModuleViewFields">
+        <PropertyRef Name="FieldID" />
+      </Principal>
+      <Dependent Role="sys_CustomView">
+        <PropertyRef Name="FieldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_UserChargeLink_sys_Operator">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_OperatorChargeLink" Type="Self.sys_OperatorChargeLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Operator">
+        <PropertyRef Name="OperatorID" />
+      </Principal>
+      <Dependent Role="sys_OperatorChargeLink">
+        <PropertyRef Name="OldOperatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_UserChargeLink_sys_Operator1">
+    <End Role="sys_Operator" Type="Self.sys_Operator" Multiplicity="1" />
+    <End Role="sys_OperatorChargeLink" Type="Self.sys_OperatorChargeLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Operator">
+        <PropertyRef Name="OperatorID" />
+      </Principal>
+      <Dependent Role="sys_OperatorChargeLink">
+        <PropertyRef Name="NewOperatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_UserGroup_sys_Group">
+    <End Role="sys_Department" Type="Self.sys_Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_UserDept" Type="Self.sys_UserDept" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Department">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="sys_UserDept">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sys_UserRoles_sys_Roles">
+    <End Role="sys_Roles" Type="Self.sys_Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sys_OperatorRoles" Type="Self.sys_OperatorRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sys_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="sys_OperatorRoles">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CheckOutputSwitch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CreateModuleViewFields" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModuleViewID" Type="int" Mode="In" />
+    <Parameter Name="TableName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="DeptUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="DeptID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GetApplicationPath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetCompanyDeptID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="QueryDeptID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetCompanyDeptList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="QueryDeptID" Type="varchar" Mode="In" />
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="deptID" Type="varchar" MaxLength="50" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetDefaultAccountByUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="Value" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Currency" Type="varchar" Mode="In" />
+    <Parameter Name="Count" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetDeptUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeptID" Type="varchar" Mode="In" />
+    <Parameter Name="RootID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetFlowNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="Profile" Type="varchar" Mode="In" />
+    <Parameter Name="EmpNo" Type="varchar" Mode="In" />
+    <Parameter Name="other" Type="varchar" Mode="In" />
+    <Parameter Name="GeneratNO" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="GetFlowNo0420" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="Profile" Type="varchar" Mode="In" />
+    <Parameter Name="EmpNo" Type="varchar" Mode="In" />
+    <Parameter Name="other" Type="varchar" Mode="In" />
+    <Parameter Name="GeneratNO" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="GetFlowNo1231" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="Profile" Type="varchar" Mode="In" />
+    <Parameter Name="EmpNo" Type="varchar" Mode="In" />
+    <Parameter Name="other" Type="varchar" Mode="In" />
+    <Parameter Name="GeneratNO" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="GetFlowNos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="Profile" Type="varchar" Mode="In" />
+    <Parameter Name="EmpNo" Type="varchar" Mode="In" />
+    <Parameter Name="other" Type="varchar" Mode="In" />
+    <Parameter Name="addNum" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetOperatorChargeLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="OperatorID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetOperatorSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Operator" Type="varchar" Mode="In" />
+    <Parameter Name="iCount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetPageCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getPageSize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSettleType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="sendOP" Type="nvarchar" Mode="In" />
+    <Parameter Name="SettleOP" Type="nvarchar" Mode="In" />
+    <Parameter Name="FromApplicationID" Type="int" Mode="In" />
+    <Parameter Name="ToApplicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSystemDefaultDeptAndOP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Profile" Type="varchar" Mode="In" />
+    <Parameter Name="EmpNo" Type="varchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTaxNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="input" Type="varchar" Mode="In" />
+    <Parameter Name="RootID" Type="nchar" Mode="In" />
+    <Parameter Name="OPID" Type="varchar" Mode="In" />
+    <Parameter Name="APPID" Type="int" Mode="In" />
+    <Parameter Name="TopCount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserIndDept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetUserOperator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetUserVoucherCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetXMLSendAndReciveOP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="operatorID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GroupUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="JournalNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JournalID" Type="varchar" Mode="In" />
+    <Parameter Name="GeneratNO" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="ModulePath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="ModuleID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="OperatorCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="OperatorModule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="OperatorID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="OperatorPermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="OperatorID" Type="nchar" Mode="In" />
+    <Parameter Name="AppID" Type="int" Mode="In" />
+    <Parameter Name="PageCode" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="OperatorRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="OperatorID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="P_UserView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="int" Mode="In" />
+    <Parameter Name="applicationid" Type="int" Mode="In" />
+    <Parameter Name="pagecode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="procCustomView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="PageCode" Type="varchar" Mode="In" />
+    <Parameter Name="ViewName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="procCustomView2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="PageCode" Type="varchar" Mode="In" />
+    <Parameter Name="ViewName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="procCustomViewByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReceiveCustomsDeclareCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ReferenceNo" Type="varchar" Mode="In" />
+    <Parameter Name="XMLMD5" Type="char" Mode="In" />
+    <Parameter Name="OPID" Type="varchar" Mode="In" />
+    <Parameter Name="OPName" Type="nvarchar" Mode="In" />
+    <Parameter Name="iflag" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="RoleModulePermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="RoleID" Type="nchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="PageCode" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SavePageSize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="ViewName" Type="varchar" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ShowOrderPath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="ModuleID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_API_GetOpListByParentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OPID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetUserReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+    <Parameter Name="ApplicationId" Type="int" Mode="In" />
+    <Parameter Name="PageCode" Type="varchar" Mode="In" />
+    <Parameter Name="BtnNames" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsSysManager" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_TableInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="value" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_UpdateEntrustInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EntrustNo" Type="char" Mode="In" />
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TotalGrossWeight" Type="decimal" Mode="In" />
+    <Parameter Name="ChargeableWeight" Type="decimal" Mode="In" />
+    <Parameter Name="TotalQty" Type="int" Mode="In" />
+    <Parameter Name="TotalVolume" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="string" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="separator" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Item" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="Split1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="string" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="separator" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Item" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="SupesoftPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ReturnFields" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="Where" Type="nvarchar" Mode="In" />
+    <Parameter Name="Orderfld" Type="nvarchar" Mode="In" />
+    <Parameter Name="OrderType" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TableInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="updateOperator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UserDateFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="PageCode" Type="varchar" Mode="In" />
+    <Parameter Name="ViewName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UserDept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="UserDeptLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="RootID" Type="nchar" Mode="In" />
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+    <Parameter Name="applicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UserOperator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="UserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="UserRoleOp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+    <Parameter Name="RootID" Type="nchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UserRoleOperator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+    <Parameter Name="RootID" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="UserRolePermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="UserID" Type="nchar" Mode="In" />
+    <Parameter Name="OperatorID" Type="varchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="int" Mode="In" />
+    <Parameter Name="PageCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UserRoleSpecialOperator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="DataSpecialAuth" Type="varchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="FrameWorkModelStoreContainer">
+    <EntitySet Name="AirCustomer" EntityType="Self.AirCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContainerType2" EntityType="Self.ContainerType2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Demo" EntityType="Self.Demo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExcelImportTpl" EntityType="Self.ExcelImportTpl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileURL" EntityType="Self.FileURL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lkp_ContainerType" EntityType="Self.lkp_ContainerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lkp_PackageType" EntityType="Self.lkp_PackageType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lkp_Ports" EntityType="Self.lkp_Ports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lkp_StatusPlace" EntityType="Self.lkp_StatusPlace" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoticeSend" EntityType="Self.NoticeSend" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Applications" EntityType="Self.sys_Applications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_ApplicationSSO" EntityType="Self.sys_ApplicationSSO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_ApplicationURL" EntityType="Self.sys_ApplicationURL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Customer" EntityType="Self.sys_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_CustomerTax" EntityType="Self.sys_CustomerTax" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_CustomPageSize" EntityType="Self.sys_CustomPageSize" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_CustomView" EntityType="Self.sys_CustomView" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_CustomViewDataFilter" EntityType="Self.sys_CustomViewDataFilter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_DefaultConfig" EntityType="Self.sys_DefaultConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_DefaultFormValue" EntityType="Self.sys_DefaultFormValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_DepartArea" EntityType="Self.sys_DepartArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Department" EntityType="Self.sys_Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_DeptAccount" EntityType="Self.sys_DeptAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_DeptLink" EntityType="Self.sys_DeptLink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Event" EntityType="Self.sys_Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_EventSwitch" EntityType="Self.sys_EventSwitch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_FlowNumberInfo" EntityType="Self.sys_FlowNumberInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Module" EntityType="Self.sys_Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_ModuleExtPermission" EntityType="Self.sys_ModuleExtPermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_ModulePrintButton" EntityType="Self.sys_ModulePrintButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_ModuleView" EntityType="Self.sys_ModuleView" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_ModuleViewFields" EntityType="Self.sys_ModuleViewFields" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Online" EntityType="Self.sys_Online" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Operator" EntityType="Self.sys_Operator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_OperatorChargeLink" EntityType="Self.sys_OperatorChargeLink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_OperatorRoles" EntityType="Self.sys_OperatorRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_RolePermission" EntityType="Self.sys_RolePermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_RoleReportConfig" EntityType="Self.sys_RoleReportConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_Roles" EntityType="Self.sys_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_RoleSpecialOperatorAuth" EntityType="Self.sys_RoleSpecialOperatorAuth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_SettleDept" EntityType="Self.sys_SettleDept" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_SQLOutputSwitch" EntityType="Self.sys_SQLOutputSwitch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_SystemInfo" EntityType="Self.sys_SystemInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_User" EntityType="Self.sys_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_UserDept" EntityType="Self.sys_UserDept" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPayBank" EntityType="Self.UserPayBank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sonic_NC_Department" EntityType="Self.Sonic_NC_Department" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Sonic_NC_Department].[indx] AS [indx], 
+    [Sonic_NC_Department].[PSNCODE] AS [PSNCODE], 
+    [Sonic_NC_Department].[PSNNAME] AS [PSNNAME], 
+    [Sonic_NC_Department].[DEPTCODE] AS [DEPTCODE], 
+    [Sonic_NC_Department].[DEPTNAME] AS [DEPTNAME]
+    FROM [dbo].[Sonic_NC_Department] AS [Sonic_NC_Department]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sys_ApplicationURL20171205" EntityType="Self.sys_ApplicationURL20171205" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sys_ApplicationURL20171205].[AppURLID] AS [AppURLID], 
+    [sys_ApplicationURL20171205].[ApplicationID] AS [ApplicationID], 
+    [sys_ApplicationURL20171205].[AppURLName] AS [AppURLName], 
+    [sys_ApplicationURL20171205].[AppURL] AS [AppURL], 
+    [sys_ApplicationURL20171205].[URLType] AS [URLType], 
+    [sys_ApplicationURL20171205].[IsPermission] AS [IsPermission], 
+    [sys_ApplicationURL20171205].[ServerType] AS [ServerType]
+    FROM [dbo].[sys_ApplicationURL20171205] AS [sys_ApplicationURL20171205]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sys_userdept0210" EntityType="Self.sys_userdept0210" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sys_userdept0210].[UserID] AS [UserID], 
+    [sys_userdept0210].[DeptID] AS [DeptID]
+    FROM [dbo].[sys_userdept0210] AS [sys_userdept0210]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TEMP_HR_User" EntityType="Self.TEMP_HR_User" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TEMP_HR_User].[UserID] AS [UserID], 
+    [TEMP_HR_User].[NameCN] AS [NameCN], 
+    [TEMP_HR_User].[Position] AS [Position], 
+    [TEMP_HR_User].[Company] AS [Company]
+    FROM [dbo].[TEMP_HR_User] AS [TEMP_HR_User]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="truck_ModuleExtPermission" EntityType="Self.truck_ModuleExtPermission" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [truck_ModuleExtPermission].[ExtPermissionID] AS [ExtPermissionID], 
+    [truck_ModuleExtPermission].[ApplicationID] AS [ApplicationID], 
+    [truck_ModuleExtPermission].[PageCode] AS [PageCode], 
+    [truck_ModuleExtPermission].[BtnNames] AS [BtnNames], 
+    [truck_ModuleExtPermission].[PermissionName] AS [PermissionName], 
+    [truck_ModuleExtPermission].[PermissionValue] AS [PermissionValue], 
+    [truck_ModuleExtPermission].[Description] AS [Description], 
+    [truck_ModuleExtPermission].[ShowOrder] AS [ShowOrder]
+    FROM [dbo].[truck_ModuleExtPermission] AS [truck_ModuleExtPermission]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_GetOperatorCompany" EntityType="Self.v_GetOperatorCompany" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [v_GetOperatorCompany].[OperatorID] AS [OperatorID], 
+    [v_GetOperatorCompany].[OperatorName] AS [OperatorName], 
+    [v_GetOperatorCompany].[UserID] AS [UserID], 
+    [v_GetOperatorCompany].[DeptID] AS [DeptID], 
+    [v_GetOperatorCompany].[CustomerID] AS [CustomerID], 
+    [v_GetOperatorCompany].[CustomerName] AS [CustomerName]
+    FROM [dbo].[v_GetOperatorCompany] AS [v_GetOperatorCompany]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_OperatorUser_List" EntityType="Self.V_OperatorUser_List" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_OperatorUser_List].[OperatorID] AS [OperatorID], 
+    [V_OperatorUser_List].[OperatorName] AS [OperatorName], 
+    [V_OperatorUser_List].[UserID] AS [UserID], 
+    [V_OperatorUser_List].[NameCN] AS [NameCN]
+    FROM [dbo].[V_OperatorUser_List] AS [V_OperatorUser_List]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_UserDept_List" EntityType="Self.V_UserDept_List" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_UserDept_List].[UserID] AS [UserID], 
+    [V_UserDept_List].[NameCN] AS [NameCN], 
+    [V_UserDept_List].[DeptID] AS [DeptID], 
+    [V_UserDept_List].[DeptName] AS [DeptName]
+    FROM [dbo].[V_UserDept_List] AS [V_UserDept_List]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_sys_ApplicationURL_sys_Applications" Association="Self.FK_sys_ApplicationURL_sys_Applications">
+      <End Role="sys_Applications" EntitySet="sys_Applications" />
+      <End Role="sys_ApplicationURL" EntitySet="sys_ApplicationURL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_Module_sys_Applications" Association="Self.FK_sys_Module_sys_Applications">
+      <End Role="sys_Applications" EntitySet="sys_Applications" />
+      <End Role="sys_Module" EntitySet="sys_Module" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_ModuleView_sys_Module" Association="Self.FK_sys_ModuleView_sys_Module">
+      <End Role="sys_Module" EntitySet="sys_Module" />
+      <End Role="sys_ModuleView" EntitySet="sys_ModuleView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_OperatorRoles_sys_Operator" Association="Self.FK_sys_OperatorRoles_sys_Operator">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_OperatorRoles" EntitySet="sys_OperatorRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RolePermission_sys_RolePermission" Association="Self.FK_sys_RolePermission_sys_RolePermission">
+      <End Role="sys_Module" EntitySet="sys_Module" />
+      <End Role="sys_RolePermission" EntitySet="sys_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RolePermission_sys_Roles" Association="Self.FK_sys_RolePermission_sys_Roles">
+      <End Role="sys_Roles" EntitySet="sys_Roles" />
+      <End Role="sys_RolePermission" EntitySet="sys_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RoleSpecialOperatorAuth_sys_Operator" Association="Self.FK_sys_RoleSpecialOperatorAuth_sys_Operator">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_RoleSpecialOperatorAuth" EntitySet="sys_RoleSpecialOperatorAuth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RoleSpecialUser_sys_Roles" Association="Self.FK_sys_RoleSpecialUser_sys_Roles">
+      <End Role="sys_Roles" EntitySet="sys_Roles" />
+      <End Role="sys_RoleSpecialOperatorAuth" EntitySet="sys_RoleSpecialOperatorAuth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_RoleView_sys_ModuleViewFields" Association="Self.FK_sys_RoleView_sys_ModuleViewFields">
+      <End Role="sys_ModuleViewFields" EntitySet="sys_ModuleViewFields" />
+      <End Role="sys_CustomView" EntitySet="sys_CustomView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_UserChargeLink_sys_Operator" Association="Self.FK_sys_UserChargeLink_sys_Operator">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_OperatorChargeLink" EntitySet="sys_OperatorChargeLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_UserChargeLink_sys_Operator1" Association="Self.FK_sys_UserChargeLink_sys_Operator1">
+      <End Role="sys_Operator" EntitySet="sys_Operator" />
+      <End Role="sys_OperatorChargeLink" EntitySet="sys_OperatorChargeLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_UserGroup_sys_Group" Association="Self.FK_sys_UserGroup_sys_Group">
+      <End Role="sys_Department" EntitySet="sys_Department" />
+      <End Role="sys_UserDept" EntitySet="sys_UserDept" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sys_UserRoles_sys_Roles" Association="Self.FK_sys_UserRoles_sys_Roles">
+      <End Role="sys_Roles" EntitySet="sys_Roles" />
+      <End Role="sys_OperatorRoles" EntitySet="sys_OperatorRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
