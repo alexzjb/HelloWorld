@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Topshelf;
-using DAL;
 using com.okcoin.rest.future;
 using ConsoleApp1.model;
 using Newtonsoft.Json;
@@ -18,7 +17,7 @@ namespace ConsoleApp
     {
         System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
         Tools.Logger logger = new Tools.Logger();
-
+        DotNet.Utilities.SaveData saveData = new DotNet.Utilities.SaveData();
         readonly Timer _timer1;
         readonly Timer _timer2;
         public TaskRunner()
@@ -48,11 +47,11 @@ namespace ConsoleApp
         private void getDataStock_Min()
         {
             GetDataKline();
-            GetData_depth();
+            //GetData_depth();
         }
         private void getDataStock_Hour()
         {
-            GetData_tick();
+            //GetData_tick();
         }
 
         #region Task GetData kline
@@ -76,20 +75,29 @@ namespace ConsoleApp
                             JArray arr = dt as JArray;
                             for (int i = 0; i < arr.Count; i++)
                             {
-                                SaveData_kline(new DAL.kLine()
-                                {
-                                    id = Convert.ToInt64(arr[i][0]),
-                                    start = Convert.ToDecimal(arr[i][1]),
-                                    high = Convert.ToDecimal(arr[i][2]),
-                                    low = Convert.ToDecimal(arr[i][3]),
-                                    end = Convert.ToDecimal(arr[i][4]),
-                                    vol = Convert.ToDecimal(arr[i][5]),
-                                    num = Convert.ToDecimal(arr[i][6]),
-                                    Stime = startTime.AddMilliseconds(Convert.ToInt64(arr[i][0])),
-                                    symbol = symble,
-                                    type = type,
-                                    contract_type = contract
-                                });
+                                saveData.AppendData_kline($"{symble}_{contract}_{type}",
+                                    $"{startTime.AddMilliseconds(Convert.ToInt64(arr[i][0]))}," +//Stime
+                                    $"{Convert.ToInt64(arr[i][0])}," +//id
+                                    $"{Convert.ToDecimal(arr[i][1])}," +//start
+                                    $"{Convert.ToDecimal(arr[i][2])}," +//high
+                                    $"{Convert.ToDecimal(arr[i][3])}," +//low
+                                    $"{Convert.ToDecimal(arr[i][4])}," +//end
+                                    $"{Convert.ToDecimal(arr[i][5])}," +//vol
+                                    $"{Convert.ToDecimal(arr[i][6])}" //num
+                                    );
+                                //SaveData_kline(
+                                //    id = Convert.ToInt64(arr[i][0]),
+                                //    start = Convert.ToDecimal(arr[i][1]),
+                                //    high = Convert.ToDecimal(arr[i][2]),
+                                //    low = Convert.ToDecimal(arr[i][3]),
+                                //    end = Convert.ToDecimal(arr[i][4]),
+                                //    vol = Convert.ToDecimal(arr[i][5]),
+                                //    num = Convert.ToDecimal(arr[i][6]),
+                                //    Stime = startTime.AddMilliseconds(Convert.ToInt64(arr[i][0])),
+                                //    symbol = symble,
+                                //    type = type,
+                                //    contract_type = contract
+                                //});
                             }
                         }
                         catch(Exception ex)
@@ -119,24 +127,6 @@ namespace ConsoleApp
                 return "";
             }
         }
-        private void SaveData_kline(kLine line)
-        {
-            using (var entity = new MyTestEntities())
-            {
-                var s = entity.kLine.Where(p => p.id == line.id && p.symbol== line.symbol && p.type==line.type&& p.contract_type==line.contract_type).ToArray();
-                if(s.Any())
-                {
-                    var model = s.First<kLine>();
-                    model = line;
-                    entity.SaveChanges();
-                }
-                else
-                {
-                    entity.kLine.Add(line);
-                    entity.SaveChanges();
-                }
-            }
-        }
 
         #endregion
 
@@ -160,31 +150,43 @@ namespace ConsoleApp
                         int no = 0;
                         for (int i = 0; i < dt.asks.Count; i++)
                         {
-                            SaveData_depth(new depth()
-                            {
-                                ltime = timeStamp,
-                                id = ++no,
-                                depthvalue1 = Convert.ToDecimal(dt.asks[i][0]),
-                                depthvalue2 = Convert.ToDecimal(dt.asks[i][1]),
-                                Stime = startTime.AddMilliseconds(timeStamp),
-                                symbol = symble,
-                                asktype = "ask",
-                                contract_type = contract
-                            });
+                            saveData.AppendData_depth($"{symble}_{contract}_ask",
+                                $"{startTime.AddMilliseconds(timeStamp)}," +//Stime
+                                $"{Convert.ToInt64(++no)}," +//id
+                                $"{Convert.ToDecimal(dt.asks[i][0])}," +//depthvalue1
+                                $"{Convert.ToDecimal(dt.asks[i][1])}" //depthvalue2
+                                );
+                            //SaveData_depth(new depth()
+                            //{
+                            //    ltime = timeStamp,
+                            //    id = ++no,
+                            //    depthvalue1 = Convert.ToDecimal(dt.asks[i][0]),
+                            //    depthvalue2 = Convert.ToDecimal(dt.asks[i][1]),
+                            //    Stime = startTime.AddMilliseconds(timeStamp),
+                            //    symbol = symble,
+                            //    asktype = "ask",
+                            //    contract_type = contract
+                            //});
                         }
                         for (int i = 0; i < dt.bids.Count; i++)
                         {
-                            SaveData_depth(new depth()
-                            {
-                                ltime = timeStamp,
-                                id = ++no,
-                                depthvalue1 = Convert.ToDecimal(dt.asks[i][0]),
-                                depthvalue2 = Convert.ToDecimal(dt.asks[i][1]),
-                                Stime = startTime.AddMilliseconds(timeStamp),
-                                symbol = symble,
-                                asktype = "bids",
-                                contract_type = contract
-                            });
+                            saveData.AppendData_depth($"{symble}_{contract}_bids",
+                                    $"{startTime.AddMilliseconds(timeStamp)}," +//Stime
+                                    $"{Convert.ToInt64(++no)}," +//id
+                                    $"{Convert.ToDecimal(dt.bids[i][0])}," +//depthvalue1
+                                    $"{Convert.ToDecimal(dt.bids[i][1])}" //depthvalue2
+                                    );
+                            //SaveData_depth(new depth()
+                            //{
+                            //    ltime = timeStamp,
+                            //    id = ++no,
+                            //    depthvalue1 = Convert.ToDecimal(dt.asks[i][0]),
+                            //    depthvalue2 = Convert.ToDecimal(dt.asks[i][1]),
+                            //    Stime = startTime.AddMilliseconds(timeStamp),
+                            //    symbol = symble,
+                            //    asktype = "bids",
+                            //    contract_type = contract
+                            //});
                         }
                     }
                     catch (Exception ex)
@@ -213,24 +215,6 @@ namespace ConsoleApp
                 return "";
             }
         }
-        private void SaveData_depth(depth model)
-        {
-            using (var entity = new MyTestEntities())
-            {
-                var s = entity.depth.Where(p => p.ltime == model.ltime && p.symbol == model.symbol && p.id == model.id && p.contract_type == model.contract_type).ToArray();
-                if (s.Any())
-                {
-                    var model1 = s.First<depth>();
-                    model1 = model;
-                    entity.SaveChanges();
-                }
-                else
-                {
-                    entity.depth.Add(model);
-                    entity.SaveChanges();
-                }
-            }
-        }
         #endregion
 
         #region Task GetData tick
@@ -249,22 +233,31 @@ namespace ConsoleApp
                         //var str = "{\"date\":\"1411627632\",\"ticker\":{\"last\":409.2,\"buy\":408.23,\"sell\":409.18,\"high\":432.0,\"low\":405.71,\"vol\":55168.0,\"contract_id\":20140926012,\"unit_amount\":100.0}}";
                         logger.AppendInfo($"resultData_tick: Success \r\n ");
                         var dt = JsonConvert.DeserializeObject<tickModel>(str);
-
-                            SaveData_tick(new ticker()
-                            {
-                                ltime = Convert.ToInt64(dt.date),
-                                last = Convert.ToDecimal(dt.ticker.last),
-                                buy = Convert.ToDecimal(dt.ticker.buy),
-                                sell = Convert.ToDecimal(dt.ticker.sell),
-                                higt = Convert.ToDecimal(dt.ticker.high),
-                                low = Convert.ToDecimal(dt.ticker.low),
-                                vol = Convert.ToDecimal(dt.ticker.vol),
-                                contract_id = Convert.ToInt64(dt.ticker.contract_id),
-                                unit_amount = Convert.ToDecimal(dt.ticker.unit_amount),
-                                Stime = startTime.AddMilliseconds(Convert.ToInt64(dt.date+"000")),
-                                symbol = symble,
-                                contract_type = contract
-                            });
+                        saveData.AppendData_ticker($"{symble}_{contract}",
+                            $"{startTime.AddMilliseconds(Convert.ToInt64(dt.date + "000"))}," +//Stime
+                            $"{Convert.ToInt64(dt.date)}," +//id
+                            $"{Convert.ToDecimal(dt.ticker.last)}," +//last
+                            $"{Convert.ToDecimal(dt.ticker.buy)}," +//buy
+                            $"{Convert.ToDecimal(dt.ticker.sell)}," +//sell
+                            $"{Convert.ToDecimal(dt.ticker.high)}," +//high
+                            $"{Convert.ToDecimal(dt.ticker.low)}," +//low
+                            $"{Convert.ToDecimal(dt.ticker.vol)}" //vol
+                            );
+                        //SaveData_tick(new ticker()
+                        //{
+                        //    ltime = Convert.ToInt64(dt.date),
+                        //    last = Convert.ToDecimal(dt.ticker.last),
+                        //    buy = Convert.ToDecimal(dt.ticker.buy),
+                        //    sell = Convert.ToDecimal(dt.ticker.sell),
+                        //    higt = Convert.ToDecimal(dt.ticker.high),
+                        //    low = Convert.ToDecimal(dt.ticker.low),
+                        //    vol = Convert.ToDecimal(dt.ticker.vol),
+                        //    contract_id = Convert.ToInt64(dt.ticker.contract_id),
+                        //    unit_amount = Convert.ToDecimal(dt.ticker.unit_amount),
+                        //    Stime = startTime.AddMilliseconds(Convert.ToInt64(dt.date+"000")),
+                        //    symbol = symble,
+                        //    contract_type = contract
+                        //});
                     }
                     catch (Exception ex)
                     {
@@ -292,24 +285,7 @@ namespace ConsoleApp
                 return "";
             }
         }
-        private void SaveData_tick(tickModel model)
-        {
-            using (var entity = new MyTestEntities())
-            {
-                var s = entity.ticker.Where(p => p.ltime == model.ltime && p.symbol == model.symbol && p.contract_type == model.contract_type).ToArray();
-                if (s.Any())
-                {
-                    var model1 = s.First<ticker>();
-                    model1 = model;
-                    entity.SaveChanges();
-                }
-                else
-                {
-                    entity.ticker.Add(model);
-                    entity.SaveChanges();
-                }
-            }
-        }
+        
         #endregion
     }
 
@@ -318,22 +294,22 @@ namespace ConsoleApp
     {
         public static void Main()
         {
-            var rc = HostFactory.Run(x =>                                   //1
+            var rc = HostFactory.Run(x =>
             {
-                x.Service<TaskRunner>(s =>                                   //2
+                x.Service<TaskRunner>(s =>
                 {
-                    s.ConstructUsing(name => new TaskRunner());                //3
-                    s.WhenStarted(tc => tc.Start());                         //4
-                    s.WhenStopped(tc => tc.Stop());                          //5
+                    s.ConstructUsing(name => new TaskRunner());
+                    s.WhenStarted(tc => tc.Start());
+                    s.WhenStopped(tc => tc.Stop());
                 });
-                x.RunAsLocalSystem();                                       //6
+                x.RunAsLocalSystem();
 
-                x.SetDescription("Sample Topshelf Host");                   //7
-                x.SetDisplayName("Stuff");                                  //8
-                x.SetServiceName("Stuff");                                  //9
-            });                                                             //10
+                x.SetDescription("Sample Topshelf Host");
+                x.SetDisplayName("Stuff");
+                x.SetServiceName("Stuff");
+            });
 
-            var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());  //11
+            var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());
             Environment.ExitCode = exitCode;
         }
     }

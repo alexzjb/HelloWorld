@@ -1,0 +1,15 @@
+E:\source\git\MyConsol\PullData\bin\Debug\PullData.exe.config
+E:\source\git\MyConsol\PullData\bin\Debug\PullData.exe
+E:\source\git\MyConsol\PullData\bin\Debug\PullData.pdb
+E:\source\git\MyConsol\PullData\bin\Debug\DotNet.Utilities.dll
+E:\source\git\MyConsol\PullData\bin\Debug\log4net.dll
+E:\source\git\MyConsol\PullData\bin\Debug\Newtonsoft.Json.dll
+E:\source\git\MyConsol\PullData\bin\Debug\Topshelf.dll
+E:\source\git\MyConsol\PullData\bin\Debug\DotNet.Utilities.pdb
+E:\source\git\MyConsol\PullData\bin\Debug\log4net.xml
+E:\source\git\MyConsol\PullData\bin\Debug\Newtonsoft.Json.xml
+E:\source\git\MyConsol\PullData\bin\Debug\Topshelf.xml
+E:\source\git\MyConsol\PullData\obj\Debug\PullData.csprojResolveAssemblyReference.cache
+E:\source\git\MyConsol\PullData\obj\Debug\PullData.csproj.CoreCompileInputs.cache
+E:\source\git\MyConsol\PullData\obj\Debug\PullData.exe
+E:\source\git\MyConsol\PullData\obj\Debug\PullData.pdb

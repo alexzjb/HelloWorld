@@ -12,7 +12,10 @@ namespace websocket
         {
             try
             {
-                Logger.Info("Start");
+                //测试文档保存
+                //DotNet.Utilities.SaveData saveData = new DotNet.Utilities.SaveData();
+                //saveData.AppendData("socket", "json", "aaaa");
+
                 var rc = HostFactory.Run(x =>
                 {
                     x.Service<TaskRunner>(s =>
@@ -42,7 +45,7 @@ namespace websocket
             }
         }
     }
-
+    
 
     public class TaskRunner
     {

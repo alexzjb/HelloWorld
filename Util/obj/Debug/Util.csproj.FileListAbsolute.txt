@@ -1,0 +1,5 @@
+E:\source\git\MyConsol\Util\bin\Debug\DotNet.Utilities.dll
+E:\source\git\MyConsol\Util\bin\Debug\DotNet.Utilities.pdb
+E:\source\git\MyConsol\Util\obj\Debug\Util.csproj.CoreCompileInputs.cache
+E:\source\git\MyConsol\Util\obj\Debug\DotNet.Utilities.dll
+E:\source\git\MyConsol\Util\obj\Debug\DotNet.Utilities.pdb
