@@ -40,29 +40,56 @@ namespace ConsoleTest
 
             /*  ******** 测试DAL   ********* */
 
-            DAL.MyTestEntities ef = new DAL.MyTestEntities();
-            var kLines = ef.kLine.Where(p => p.type == "1min" && p.symbol == "eth_usd" && p.contract_type == "this_week" && p.id>= 1525873860000).ToList();
-            var jsonData = new
-            {
-                data = kLines
-            };
-            Console.WriteLine( Newtonsoft.Json.JsonConvert.SerializeObject(jsonData));
-            
+            //DAL.MyTestEntities ef = new DAL.MyTestEntities();
+            //var kLines = ef.kLine.Where(p => p.type == "1min" && p.symbol == "eth_usd" && p.contract_type == "this_week" && p.id>= 1525873860000).ToList();
+            //var jsonData = new
+            //{
+            //    data = kLines
+            //};
+            //Console.WriteLine( Newtonsoft.Json.JsonConvert.SerializeObject(jsonData));
+
 
             /* ****** 测试输入退格 ********* */
-            for (int i = 0; i < 100; i++)
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    Console.Write("\b");
+            //    Console.Write("/");
+            //    Thread.Sleep(330);
+            //    Console.Write("\b");
+            //    Console.Write("-");
+            //    Thread.Sleep(330);
+            //    Console.Write("\b");
+            //    Console.Write("\\");
+            //    Thread.Sleep(330);
+            //}
+            //Console.ReadLine();
+
+            /* ***********测试txt插入及顺序输出*********** */
+            var path = @"C:\Users\Alex.zhang\Desktop\kline_ltc_usd_quarter_1min_20180601.csv";
+            var file = File.Open(path, FileMode.OpenOrCreate);
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            string key, value;
+            using (var stream = new StreamReader(file))
             {
-                Console.Write("\b");
-                Console.Write("/");
-                Thread.Sleep(330);
-                Console.Write("\b");
-                Console.Write("-");
-                Thread.Sleep(330);
-                Console.Write("\b");
-                Console.Write("\\");
-                Thread.Sleep(330);
+                while (!stream.EndOfStream)
+                {
+                    value = stream.ReadLine();
+                    key = value.Split(',')[1];
+                    if (dic.Keys.Contains(key))
+                        dic.Remove(key);
+                    dic.Add(key, value);
+                }
             }
-            Console.ReadLine();
+            file.Close();
+            List<string> rlist = dic.Values.ToList();
+            rlist.Sort();
+
+            File.Delete(path);
+            StreamWriter sw = File.AppendText(path);
+            rlist.ForEach(l=>sw.WriteLine(l));
+            sw.Flush();
+            sw.Close();
+            sw.Dispose();
         }
         #region POST
 

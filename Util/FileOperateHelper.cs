@@ -168,14 +168,37 @@ namespace DotNet.Utilities
                 System.IO.Directory.CreateDirectory(Path);
             }
             fileName += ".csv";
-            if (!System.IO.File.Exists(Path+ fileName))
+            //读取已有数据
+            var path = Path + fileName;
+            var file = File.Open(path, FileMode.OpenOrCreate);
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            string key, value;
+            using (var stream = new StreamReader(file))
             {
-                System.IO.FileStream f = System.IO.File.Create(Path + fileName);
-                f.Close();
-                f.Dispose();
+                while (!stream.EndOfStream)
+                {
+                    value = stream.ReadLine();
+                    key = value.Split(',')[1];
+                    if (dic.Keys.Contains(key))
+                        dic.Remove(key);
+                    dic.Add(key, value);
+                }
             }
-            StreamWriter sw = File.AppendText(Path + fileName);
-            sw.Write(strings);
+            //插入数据
+            value = strings;
+            key = value.Split(',')[1];
+            if (dic.Keys.Contains(key))
+                dic.Remove(key);
+            dic.Add(key, value);
+            //读取结束
+            file.Close();
+            List<string> rlist = dic.Values.ToList();
+            rlist.Sort();
+
+            //重新写入
+            File.Delete(path);
+            StreamWriter sw = File.AppendText(path);
+            rlist.ForEach(l => sw.WriteLine(l));
             sw.Flush();
             sw.Close();
             sw.Dispose();

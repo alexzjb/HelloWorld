@@ -14,7 +14,7 @@ namespace websocket
             if (msg.Equals("{\"event\":\"pong\"}")) return;
             try
             {
-                saveData.AppendData("socket", "json", msg);
+                saveData.AppendData(true,"socket", "json", msg);
                 //using (var entity = new MyTestEntities())
                 //{
                 //    entity.socketData.Add(new socketData()

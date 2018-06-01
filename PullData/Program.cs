@@ -47,11 +47,11 @@ namespace ConsoleApp
         private void getDataStock_Min()
         {
             GetDataKline();
-            //GetData_depth();
+            GetData_depth();
         }
         private void getDataStock_Hour()
         {
-            //GetData_tick();
+            GetData_tick();
         }
 
         #region Task GetData kline
@@ -75,7 +75,14 @@ namespace ConsoleApp
                             JArray arr = dt as JArray;
                             for (int i = 0; i < arr.Count; i++)
                             {
-                                saveData.AppendData_kline($"{symble}_{contract}_{type}",
+                                saveData.AppendData_kline(
+                                    type.Equals("1min")
+                                        || type.Equals("3min") 
+                                        || type.Equals("5min") 
+                                        || type.Equals("15min") 
+                                        || type.Equals("30min") 
+                                        || type.Equals("1hour"), 
+                                    $"{symble}_{contract}_{type}",
                                     $"{startTime.AddMilliseconds(Convert.ToInt64(arr[i][0]))}," +//Stime
                                     $"{Convert.ToInt64(arr[i][0])}," +//id
                                     $"{Convert.ToDecimal(arr[i][1])}," +//start
@@ -304,9 +311,9 @@ namespace ConsoleApp
                 });
                 x.RunAsLocalSystem();
 
-                x.SetDescription("Sample Topshelf Host");
-                x.SetDisplayName("Stuff");
-                x.SetServiceName("Stuff");
+                x.SetDescription("PullData Topshelf Host");
+                x.SetDisplayName("PullData");
+                x.SetServiceName("PullData");
             });
 
             var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());
