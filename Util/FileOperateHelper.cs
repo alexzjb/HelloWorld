@@ -204,8 +204,10 @@ namespace DotNet.Utilities
             }
             catch { }
             //读取结束
-            List<string> rlist = dic.Values.ToList();
-            rlist.Sort();
+            var dicSort = from objDic in dic orderby objDic.Key ascending select objDic;
+
+            List<string> rlist = new List<string>();
+            dicSort.ToList().ForEach(p => rlist.Add(p.Value));
 
             //重新写入
             File.WriteAllLines(fileFullPath, rlist);
@@ -262,10 +264,11 @@ namespace DotNet.Utilities
                 catch
                 { }
             }
-            //读取结束
-            List<string> rlist = dic.Values.ToList();
-            rlist.Sort();
-
+            //读取结束,排序
+            var dicSort = from objDic in dic orderby objDic.Key descending select objDic;
+            
+            List<string> rlist = new List<string>();
+            dicSort.ToList().ForEach(p => rlist.Add(p.Value));
             //重新写入
             File.WriteAllLines(fileFullPath, rlist);
         }
