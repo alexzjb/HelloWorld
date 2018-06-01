@@ -167,42 +167,109 @@ namespace DotNet.Utilities
             {
                 System.IO.Directory.CreateDirectory(Path);
             }
-            fileName += ".csv";
+            
+            string fileFullPath = Path + fileName + ".csv";
+
+            if (!File.Exists(fileFullPath))
+            {
+               WriteFile(fileFullPath, strings);
+               return;
+            }
+            
             //读取已有数据
-            var path = Path + fileName;
-            var file = File.Open(path, FileMode.OpenOrCreate);
             Dictionary<string, string> dic = new Dictionary<string, string>();
             string key, value;
-            using (var stream = new StreamReader(file))
+            var list = File.ReadAllLines(fileFullPath);
+            foreach (var s in list)
             {
-                while (!stream.EndOfStream)
+                try
                 {
-                    value = stream.ReadLine();
+                    value = s;
                     key = value.Split(',')[1];
                     if (dic.Keys.Contains(key))
                         dic.Remove(key);
                     dic.Add(key, value);
                 }
+                catch { }
             }
+
             //插入数据
-            value = strings;
-            key = value.Split(',')[1];
-            if (dic.Keys.Contains(key))
-                dic.Remove(key);
-            dic.Add(key, value);
+            try
+            {
+                value = strings;
+                key = value.Split(',')[1];
+                if (dic.Keys.Contains(key))
+                    dic.Remove(key);
+                dic.Add(key, value);
+            }
+            catch { }
             //读取结束
-            file.Close();
             List<string> rlist = dic.Values.ToList();
             rlist.Sort();
 
             //重新写入
-            File.Delete(path);
-            StreamWriter sw = File.AppendText(path);
-            rlist.ForEach(l => sw.WriteLine(l));
-            sw.Flush();
-            sw.Close();
-            sw.Dispose();
+            File.WriteAllLines(fileFullPath, rlist);
         }
+        /// <summary>
+        /// 追加文件
+        /// </summary>
+        /// <param name="Path">文件路径</param>
+        /// <param name="strings">内容</param>
+        public static void FileAdd(string Path, string fileName, List<string> strings)
+        {
+            if (!System.IO.Directory.Exists(Path))
+            {
+                System.IO.Directory.CreateDirectory(Path);
+            }
+
+            string fileFullPath = Path + fileName + ".csv";
+
+            if (!File.Exists(fileFullPath))
+            {
+                File.Create(fileFullPath);
+                File.WriteAllLines(fileFullPath, strings);
+                return;
+            }
+
+            //读取已有数据
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            string key, value;
+            var list = File.ReadAllLines(fileFullPath);
+            foreach (var s in list)
+            {
+                try
+                {
+                    value = s;
+                    key = value.Split(',')[1];
+                    if (dic.Keys.Contains(key))
+                        dic.Remove(key);
+                    dic.Add(key, value);
+                }
+                catch
+                { }
+            }
+            //插入数据
+            foreach (var s in strings)
+            {
+                try
+                {
+                    value = s;
+                    key = value.Split(',')[1];
+                    if (dic.Keys.Contains(key))
+                        dic.Remove(key);
+                    dic.Add(key, value);
+                }
+                catch
+                { }
+            }
+            //读取结束
+            List<string> rlist = dic.Values.ToList();
+            rlist.Sort();
+
+            //重新写入
+            File.WriteAllLines(fileFullPath, rlist);
+        }
+
         #endregion
 
         #region 拷贝文件

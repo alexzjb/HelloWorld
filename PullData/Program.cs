@@ -73,16 +73,11 @@ namespace ConsoleApp
                             logger.AppendInfo($"resultData_kline: Success \r\n ");
                             var dt = JsonConvert.DeserializeObject(str);
                             JArray arr = dt as JArray;
+                            List<string> list = new List<string>();
+                            logger.AppendInfo(arr.Count);
                             for (int i = 0; i < arr.Count; i++)
                             {
-                                saveData.AppendData_kline(
-                                    type.Equals("1min")
-                                        || type.Equals("3min") 
-                                        || type.Equals("5min") 
-                                        || type.Equals("15min") 
-                                        || type.Equals("30min") 
-                                        || type.Equals("1hour"), 
-                                    $"{symble}_{contract}_{type}",
+                                list.Add(
                                     $"{startTime.AddMilliseconds(Convert.ToInt64(arr[i][0]))}," +//Stime
                                     $"{Convert.ToInt64(arr[i][0])}," +//id
                                     $"{Convert.ToDecimal(arr[i][1])}," +//start
@@ -92,20 +87,17 @@ namespace ConsoleApp
                                     $"{Convert.ToDecimal(arr[i][5])}," +//vol
                                     $"{Convert.ToDecimal(arr[i][6])}" //num
                                     );
-                                //SaveData_kline(
-                                //    id = Convert.ToInt64(arr[i][0]),
-                                //    start = Convert.ToDecimal(arr[i][1]),
-                                //    high = Convert.ToDecimal(arr[i][2]),
-                                //    low = Convert.ToDecimal(arr[i][3]),
-                                //    end = Convert.ToDecimal(arr[i][4]),
-                                //    vol = Convert.ToDecimal(arr[i][5]),
-                                //    num = Convert.ToDecimal(arr[i][6]),
-                                //    Stime = startTime.AddMilliseconds(Convert.ToInt64(arr[i][0])),
-                                //    symbol = symble,
-                                //    type = type,
-                                //    contract_type = contract
-                                //});
                             }
+                            saveData.AppendData_kline(
+                                    type.Equals("1min")
+                                        || type.Equals("3min")
+                                        || type.Equals("5min")
+                                        || type.Equals("15min")
+                                        || type.Equals("30min")
+                                        || type.Equals("1hour"),
+                                    $"{symble}_{contract}_{type}",
+                                    list
+                                    );
                         }
                         catch(Exception ex)
                         {
@@ -126,7 +118,7 @@ namespace ConsoleApp
             try
             {
                 long timeStamp = (long)(new System.DateTime(2018, 5, 1) - startTime).TotalMilliseconds; // 相差毫秒数
-                return getRequest.future_kline(symble, type, contracktype, "1000", Convert.ToString(timeStamp));
+                return getRequest.future_kline(symble, type, contracktype, "10000", Convert.ToString(timeStamp));
             }
             catch (Exception ex)
             {
@@ -155,9 +147,10 @@ namespace ConsoleApp
                         logger.AppendInfo($"resultData_depth Success \r\n ");
                         var dt = JsonConvert.DeserializeObject<depthModel>(str);
                         int no = 0;
+                        List<string> list = new List<string>();
                         for (int i = 0; i < dt.asks.Count; i++)
                         {
-                            saveData.AppendData_depth($"{symble}_{contract}_ask",
+                            list.Add(
                                 $"{startTime.AddMilliseconds(timeStamp)}," +//Stime
                                 $"{Convert.ToInt64(++no)}," +//id
                                 $"{Convert.ToDecimal(dt.asks[i][0])}," +//depthvalue1
@@ -175,9 +168,13 @@ namespace ConsoleApp
                             //    contract_type = contract
                             //});
                         }
+                        saveData.AppendData_depth($"{symble}_{contract}_ask",
+                                list
+                                );
+                        list.Clear();
                         for (int i = 0; i < dt.bids.Count; i++)
                         {
-                            saveData.AppendData_depth($"{symble}_{contract}_bids",
+                            list.Add(
                                     $"{startTime.AddMilliseconds(timeStamp)}," +//Stime
                                     $"{Convert.ToInt64(++no)}," +//id
                                     $"{Convert.ToDecimal(dt.bids[i][0])}," +//depthvalue1
@@ -195,6 +192,9 @@ namespace ConsoleApp
                             //    contract_type = contract
                             //});
                         }
+                        saveData.AppendData_depth($"{symble}_{contract}_bids",
+                                    list
+                                    );
                     }
                     catch (Exception ex)
                     {

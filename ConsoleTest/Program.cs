@@ -65,31 +65,8 @@ namespace ConsoleTest
             //Console.ReadLine();
 
             /* ***********测试txt插入及顺序输出*********** */
-            var path = @"C:\Users\Alex.zhang\Desktop\kline_ltc_usd_quarter_1min_20180601.csv";
-            var file = File.Open(path, FileMode.OpenOrCreate);
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            string key, value;
-            using (var stream = new StreamReader(file))
-            {
-                while (!stream.EndOfStream)
-                {
-                    value = stream.ReadLine();
-                    key = value.Split(',')[1];
-                    if (dic.Keys.Contains(key))
-                        dic.Remove(key);
-                    dic.Add(key, value);
-                }
-            }
-            file.Close();
-            List<string> rlist = dic.Values.ToList();
-            rlist.Sort();
 
-            File.Delete(path);
-            StreamWriter sw = File.AppendText(path);
-            rlist.ForEach(l=>sw.WriteLine(l));
-            sw.Flush();
-            sw.Close();
-            sw.Dispose();
+            DotNet.Utilities.FileOperateHelper.FileAdd(@"C:\Users\Alex.zhang\Desktop\", "kline_ltc_usd_quarter_1min_20180601", "zzdsafds,190000");
         }
         #region POST
 
@@ -97,7 +74,7 @@ namespace ConsoleTest
         {
             //ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
             Encoding encoding = Encoding.UTF8;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url+"/"+body);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url+" / "+body);
             request.Method = "POST";
             request.Accept = "text/html, application/xhtml+xml, */*";
             request.ContentType = "application/text";

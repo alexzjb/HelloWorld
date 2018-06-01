@@ -34,3 +34,5 @@ D:\Alex.Zhang\mysource\MyConsol\ConsoleTest\obj\Debug\ConsoleTest.csproj.CoreCom
 D:\Alex.Zhang\mysource\MyConsol\ConsoleTest\obj\Debug\ConsoleTest.csproj.CopyComplete
 D:\Alex.Zhang\mysource\MyConsol\ConsoleTest\obj\Debug\ConsoleTest.exe
 D:\Alex.Zhang\mysource\MyConsol\ConsoleTest\obj\Debug\ConsoleTest.pdb
+D:\Alex.Zhang\mysource\MyConsol\ConsoleTest\bin\Debug\DotNet.Utilities.dll
+D:\Alex.Zhang\mysource\MyConsol\ConsoleTest\bin\Debug\DotNet.Utilities.pdb

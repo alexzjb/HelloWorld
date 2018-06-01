@@ -41,5 +41,31 @@ namespace DotNet.Utilities
                 DotNet.Utilities.FileOperateHelper.FileAdd($"{ dataPath}/{DateTime.Now.Date.ToString("yyyyMM")}/{symble}/",$"{symble}_{datatype}_{DateTime.Now.Date.ToString("yyyyMMdd")}", dataValue);
         }
 
+
+        public void AppendData_kline(bool byday, string type, List<string> value)
+        {
+            AppendData(byday, "kline", type, value);
+        }
+        public void AppendData_depth(string type, List<string> value)
+        {
+            AppendData(false, "depth", type, value);
+        }
+        public void AppendData_ticker(string type, List<string> value)
+        {
+            AppendData(false, "ticker", type, value);
+        }
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        /// <param name="symble">kline</param>
+        /// <param name="datatype">1min</param>
+        /// <param name="dataValue"></param>
+        public void AppendData(bool byday, string symble, string datatype, List<string> dataValue)
+        {
+            if (byday)
+                DotNet.Utilities.FileOperateHelper.FileAdd($"{ dataPath}/{DateTime.Now.Date.ToString("yyyyMMdd")}/{symble}/", $"{symble}_{datatype}_{DateTime.Now.Date.ToString("yyyyMMdd")}", dataValue);
+            else
+                DotNet.Utilities.FileOperateHelper.FileAdd($"{ dataPath}/{DateTime.Now.Date.ToString("yyyyMM")}/{symble}/", $"{symble}_{datatype}_{DateTime.Now.Date.ToString("yyyyMMdd")}", dataValue);
+        }
     }
 }
