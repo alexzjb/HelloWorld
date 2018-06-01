@@ -1,6 +1,0 @@
-D:\Alex.Zhang\mysource\WindowsFormsApp1\ConsoleSocket\bin\Debug\ConsoleSocket.exe.config
-D:\Alex.Zhang\mysource\WindowsFormsApp1\ConsoleSocket\bin\Debug\ConsoleSocket.exe
-D:\Alex.Zhang\mysource\WindowsFormsApp1\ConsoleSocket\bin\Debug\ConsoleSocket.pdb
-D:\Alex.Zhang\mysource\WindowsFormsApp1\ConsoleSocket\obj\Debug\ConsoleSocket.csproj.CoreCompileInputs.cache
-D:\Alex.Zhang\mysource\WindowsFormsApp1\ConsoleSocket\obj\Debug\ConsoleSocket.exe
-D:\Alex.Zhang\mysource\WindowsFormsApp1\ConsoleSocket\obj\Debug\ConsoleSocket.pdb
